@@ -1,0 +1,18 @@
+﻿check,issue_count
+Còn mẫu boilerplate đã nhận diện,0
+Thân bài không đạt chất lượng,0
+Trường bắt buộc rỗng,0
+URL không hợp lệ,0
+Ngày ngoài phạm vi,0
+Ngày không khớp published_at,0
+Còn token QNS,0
+Ticker ngoài danh mục,0
+Còn list serialize,0
+Content dưới 200 ký tự,0
+URL còn trùng,0
+news_id còn trùng,0
+Title chuẩn hóa còn trùng,0
+Content còn trùng,0
+Content hash không khớp,0
+Schema output không đúng 8 cột,0
+Đối soát số dòng raw không khớp,0

@@ -1,0 +1,15 @@
+﻿metric,value
+eda_status,REQUIRES_CLEANING
+total_rows,4491
+total_columns,22
+published_at_missing,858
+date_conflicts,1116
+serialized_list_rows,31
+invalid_raw_urls,31
+duplicate_canonical_url_rows,138
+duplicate_title_candidates,559
+duplicate_content_candidates,10
+review_candidate_rows,1504
+qns_total_raw,64
+qns_only_raw,56
+qns_mixed_raw,8

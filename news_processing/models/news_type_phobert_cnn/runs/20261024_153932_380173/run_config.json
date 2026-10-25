@@ -1,0 +1,93 @@
+{
+  "model_name": "vinai/phobert-base-v2",
+  "model_revision": "86cd7fd4c148980922ac11a2cf5e257f2ba639e1",
+  "max_length": 256,
+  "head_ratio": 0.75,
+  "word_segmenter": "VnCoreNLP wseg 1.2",
+  "pooling_special_tokens": "include; padding excluded",
+  "kernel_sizes": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "num_filters": 128,
+  "global_projection_size": 128,
+  "dropout": 0.5,
+  "num_classes": 7,
+  "label_mapping": {
+    "label_policy_version": "gold_price_industry_v1",
+    "label2id": {
+      "governance_capital": 0,
+      "financial_results": 1,
+      "business_operations": 2,
+      "legal_compliance": 3,
+      "industry": 4,
+      "stock_market": 5,
+      "mention_only": 6
+    },
+    "id2label": {
+      "0": "governance_capital",
+      "1": "financial_results",
+      "2": "business_operations",
+      "3": "legal_compliance",
+      "4": "industry",
+      "5": "stock_market",
+      "6": "mention_only"
+    },
+    "merged_labels": {
+      "macro": "industry"
+    },
+    "display_names": {
+      "governance_capital": "Quản trị, sở hữu và hành động vốn",
+      "financial_results": "Kết quả kinh doanh và tài chính",
+      "business_operations": "Hoạt động kinh doanh và đầu tư",
+      "legal_compliance": "Pháp lý và tuân thủ doanh nghiệp",
+      "industry": "Ngành, chuỗi giá trị và kinh tế vĩ mô",
+      "stock_market": "Thị trường chứng khoán và định giá",
+      "mention_only": "Tổng hợp hoặc ít liên quan"
+    }
+  },
+  "seed": 42,
+  "batch_size": 8,
+  "backbone_lr": 2e-05,
+  "head_lr": 0.001,
+  "weight_decay": 0.01,
+  "warmup_ratio": 0.1,
+  "max_epochs": 8,
+  "patience": 2,
+  "min_delta": 0.0001,
+  "max_grad_norm": 1.0,
+  "precision": "float32",
+  "device": "cuda",
+  "best_epoch": 2,
+  "best_validation_macro_f1": 0.879157304968728,
+  "class_weights_by_id": [
+    0.9973000288009644,
+    0.8525000214576721,
+    0.5081999897956848,
+    2.936500072479248,
+    1.6518000364303589,
+    0.739300012588501,
+    1.7918000221252441
+  ],
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "transformers": "4.57.1",
+    "py-vncorenlp": "0.1.4",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.7.2"
+  },
+  "input_sha256": {
+    "models/news_type_phobert_cnn/label_mapping.json": "cfa8d6699c2656a6a2622a15c8858cdece447d9d2c5868cceb417a7df498fbf3",
+    "data/splits/news_type/train.csv": "1121c3d79dba52e32b361f91d3a38713817e2579ad4d3c48bf45c458b92e8b23",
+    "data/splits/news_type/validation.csv": "9d96123b090d12608daa8f3efa01cd89a3590654956c87bd2b7d01e9b2ed40bc",
+    "data/splits/news_type/test.csv": "1e40f86ac0e85772ccbea65f0ee815eb78277ec91e0834de91d0c66aa4270bf0"
+  },
+  "segmenter_sha256": {
+    "VnCoreNLP-1.2.jar": "9e2811cdbc2ddfc71d04be5dc36e185c88dcd1ad4d5d69e4ff2e1369dccf7793",
+    "models/wordsegmenter/vi-vocab": "0a47c5b55bbce163029d37730a67b9479740388695c29c106c112b815613eaa5",
+    "models/wordsegmenter/wordsegmenter.rdr": "9e62f96bd93e37a24f364238e8d8ae986fa5dad6dbc9f4eae622ab3651b7fa06"
+  }
+}
