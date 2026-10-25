@@ -1,0 +1,8 @@
+﻿news_type,train_count,validation_count,false_negatives,false_positives,precision,recall,f1,most_confused_with,confusion_count
+financial_results,124,27,6,4,0.84,0.7777777777777778,0.8076923076923077,business_operations,2
+mention_only,59,9,1,2,0.8,0.8888888888888888,0.8421052631578947,financial_results,1
+industry,64,18,4,1,0.9333333333333333,0.7777777777777778,0.8484848484848485,financial_results,2
+governance_capital,106,22,0,5,0.8148148148148148,1.0,0.8979591836734694,,0
+stock_market,143,31,4,2,0.9310344827586207,0.8709677419354839,0.9,governance_capital,2
+legal_compliance,36,7,1,0,1.0,0.8571428571428571,0.9230769230769231,stock_market,1
+business_operations,208,45,2,4,0.9148936170212766,0.9555555555555556,0.9347826086956522,financial_results,1

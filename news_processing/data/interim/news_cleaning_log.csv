@@ -1,0 +1,11 @@
+﻿step,action,rows_affected,decision
+01,Parse serialized scalar lists,31,KEEP_AND_FIX
+02,Clean source-specific article content,2923,KEEP_AND_FIX
+03,Canonicalize URL,137,KEEP_AND_FIX
+04,Correct published_date from source timestamp,1116,KEEP_AND_FIX
+05,Normalize ticker strings,218,KEEP_AND_FIX
+06,Remove records outside date scope,470,EXCLUDE
+07,Remove QNS-only records,53,EXCLUDE
+08,Remove QNS token from mixed-ticker records,8,KEEP_AND_FIX
+09,Exclude unusable article bodies,336,EXCLUDE
+10,Merge duplicate articles,276,MERGE

@@ -1,0 +1,17 @@
+# Data preparation and notebook verification.
+numpy==2.2.6
+pandas==2.3.0
+scipy==1.16.0
+scikit-learn==1.7.0
+threadpoolctl==3.6.0
+nbformat==5.10.4
+nbclient==0.11.0
+ipykernel==6.29.5
+pytest==9.1.1
+
+# Notebooks 05/06. Install a CUDA-enabled PyTorch build separately when using a GPU.
+torch==2.9.0
+transformers==4.57.1
+py-vncorenlp==0.1.4
+matplotlib==3.10.3
+tqdm==4.67.1

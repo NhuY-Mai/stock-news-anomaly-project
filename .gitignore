@@ -1,0 +1,36 @@
+# Python and notebook caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local environments and credentials
+.venv/
+venv/
+.env
+.env.*
+.aws/
+
+# Local agent configuration
+.codex/
+.agents/
+
+# Downloaded NLP resources and model weights
+news_processing/models/vncorenlp/
+news_processing/models/java/
+news_processing/models/huggingface/
+news_processing/models/news_type_phobert_cnn/runs/*
+!news_processing/models/news_type_phobert_cnn/runs/20261024_153932_380173/
+news_processing/models/news_type_phobert_cnn/runs/20261024_153932_380173/*
+!news_processing/models/news_type_phobert_cnn/runs/20261024_153932_380173/run_config.json
+!news_processing/models/news_type_phobert_cnn/runs/20261024_153932_380173/tokenizer/
+!news_processing/models/news_type_phobert_cnn/runs/20261024_153932_380173/backbone/
+news_processing/models/news_type_phobert_cnn/studies/
+
+# Keep the selected run reports and completed predictions
+news_processing/reports/news_type/runs/*
+!news_processing/reports/news_type/runs/20261024_153932_380173/
+news_processing/reports/news_type/studies/
+news_processing/reports/news_type/evaluations/*
+!news_processing/reports/news_type/evaluations/validation_review_20261025_v2/
+/news_processing_colab.zip

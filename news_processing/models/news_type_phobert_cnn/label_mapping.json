@@ -1,0 +1,33 @@
+{
+  "label_policy_version": "company_awards_listing_v2",
+  "label2id": {
+    "governance_capital": 0,
+    "financial_results": 1,
+    "business_operations": 2,
+    "legal_compliance": 3,
+    "industry": 4,
+    "stock_market": 5,
+    "mention_only": 6
+  },
+  "id2label": {
+    "0": "governance_capital",
+    "1": "financial_results",
+    "2": "business_operations",
+    "3": "legal_compliance",
+    "4": "industry",
+    "5": "stock_market",
+    "6": "mention_only"
+  },
+  "merged_labels": {
+    "macro": "industry"
+  },
+  "display_names": {
+    "governance_capital": "Quản trị, sở hữu và hành động vốn",
+    "financial_results": "Kết quả kinh doanh và tài chính",
+    "business_operations": "Hoạt động kinh doanh và đầu tư",
+    "legal_compliance": "Pháp lý và tuân thủ doanh nghiệp",
+    "industry": "Ngành, chuỗi giá trị và kinh tế vĩ mô",
+    "stock_market": "Thị trường chứng khoán và định giá",
+    "mention_only": "Tổng hợp hoặc ít liên quan"
+  }
+}

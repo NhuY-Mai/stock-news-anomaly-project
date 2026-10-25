@@ -1,0 +1,8 @@
+﻿label_id,news_type,display_name,train_count,val_count,test_count,total_count,train_pct,val_pct,test_pct
+0,governance_capital,"Quản trị, sở hữu và hành động vốn",106,24,23,153,14.32,15.09,14.47
+1,financial_results,Kết quả kinh doanh và tài chính,124,25,27,176,16.76,15.72,16.98
+2,business_operations,Hoạt động kinh doanh và đầu tư,208,49,45,302,28.11,30.82,28.3
+3,legal_compliance,Pháp lý và tuân thủ doanh nghiệp,36,7,7,50,4.86,4.4,4.4
+4,industry,"Ngành, chuỗi giá trị và kinh tế vĩ mô",64,18,18,100,8.65,11.32,11.32
+5,stock_market,Thị trường chứng khoán và định giá,143,27,30,200,19.32,16.98,18.87
+6,mention_only,Tổng hợp hoặc ít liên quan,59,9,9,77,7.97,5.66,5.66

@@ -1,0 +1,42 @@
+{
+  "source_run": "20261024_153932_380173",
+  "evaluation_revision": "validation_review_20261025_v2",
+  "checkpoint_epoch": 2,
+  "model_retrained": false,
+  "training_label_policy": "gold_price_industry_v1",
+  "evaluation_label_policy": "company_awards_listing_v2",
+  "training_input_sha256": {
+    "models/news_type_phobert_cnn/label_mapping.json": "cfa8d6699c2656a6a2622a15c8858cdece447d9d2c5868cceb417a7df498fbf3",
+    "data/splits/news_type/train.csv": "1121c3d79dba52e32b361f91d3a38713817e2579ad4d3c48bf45c458b92e8b23",
+    "data/splits/news_type/validation.csv": "9d96123b090d12608daa8f3efa01cd89a3590654956c87bd2b7d01e9b2ed40bc",
+    "data/splits/news_type/test.csv": "1e40f86ac0e85772ccbea65f0ee815eb78277ec91e0834de91d0c66aa4270bf0"
+  },
+  "evaluation_input_sha256": {
+    "models/news_type_phobert_cnn/label_mapping.json": "cbf2d86bff834bd7762f6a9f98a4038cb1a26b722f464cc48d656a3a6bddb3da",
+    "data/splits/news_type/train.csv": "1121c3d79dba52e32b361f91d3a38713817e2579ad4d3c48bf45c458b92e8b23",
+    "data/splits/news_type/validation.csv": "9be546e6cc1bd5b86e35b9fb70e62fdacfc7d2589e04af9001a2b798862eff45",
+    "data/splits/news_type/test.csv": "1e40f86ac0e85772ccbea65f0ee815eb78277ec91e0834de91d0c66aa4270bf0"
+  },
+  "revision_sha256": "a70c645f018d739467ce15d947d27b276454022837f7c766f0393096ff6a2036",
+  "pending_reviews": [],
+  "resolved_reviews": [
+    {
+      "news_id": "f52e0fbda1db9bac08cce9aef325ec5418d0ebc1047ce94729357c513728e68f",
+      "news_type": "financial_results",
+      "decision": "confirmed_unchanged",
+      "reviewed_date": "2026-10-25",
+      "reason": "Tiêu đề hỏi ai lỗ, lãi mạnh nhất; thân bài chủ yếu so sánh doanh thu và lợi nhuận từng doanh nghiệp. Thanh tra là bối cảnh, không phải chủ đề chính; bài không lấy phân tích ngành làm trọng tâm."
+    },
+    {
+      "news_id": "e98f7563f84e8a626295e73632ebd7679ae7f18961162b5fcabcf24ce90a8213",
+      "news_type": "financial_results",
+      "decision": "confirmed_unchanged",
+      "reviewed_date": "2026-10-25",
+      "reason": "Tiêu đề và thân bài nhấn doanh thu, dự báo lợi nhuận quý 1 và kế hoạch năm 2025 của MSN, MCH, WCM. Vốn hóa và diễn biến cổ phiếu là phần phụ, không phải trọng tâm phân tích giá hoặc định giá."
+    }
+  ],
+  "label_review_complete": true,
+  "final_evaluation": false,
+  "evaluated_split": "validation",
+  "test_evaluated": false
+}
