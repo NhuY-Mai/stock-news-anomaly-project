@@ -1,0 +1,17 @@
+{
+  "data_03_ready_and_chronological": true,
+  "train_n": 10387,
+  "val_select_n": 1430,
+  "proxy_valid_all_model_ready_rows": true,
+  "proxy_past_only": true,
+  "roc_pr_on_val_select_only": true,
+  "checkpoint_files_match_step07_hash": true,
+  "checkpoint_scores_reproduce_step065": true,
+  "step07_q99_reproduced_without_refit": true,
+  "test_scores_computed": false,
+  "test_used_to_choose_model_or_proxy": false,
+  "q99_unchanged": true,
+  "proxy_policy_awaiting_user_agreement": false,
+  "test_open_authorized": true,
+  "recommendation": "Technical gate passed. Test is ready for a separate one-time evaluation; this script does NOT score Test."
+}

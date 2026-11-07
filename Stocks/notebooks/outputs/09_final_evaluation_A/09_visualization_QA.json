@@ -1,0 +1,40 @@
+{
+  "step": "09_final_visualization_A",
+  "test_rows": 2405,
+  "ticker_count": 13,
+  "test_dates": 185,
+  "test_data_sha256": "8060e318b07fb9d468ea1dfbb75382002b05fca5135d5ddffb92a7f70551139f",
+  "threshold_manifest_sha256": "fb255db81d4bec0977b5243f0f406b09b26025034b305817e8af9d485fcabc5e",
+  "p0_positives": 210,
+  "alerts": {
+    "IF": 13,
+    "AE": 21,
+    "LOF": 31
+  },
+  "pairwise_intersections": {
+    "IF-AE": 8,
+    "IF-LOF": 7,
+    "AE-LOF": 6
+  },
+  "n_any_alert": 48,
+  "n_all_three_alert": 4,
+  "n_company_timelines": 13,
+  "n_selected_cases": 8,
+  "n_png_figures": 27,
+  "roc_pr_assets": {
+    "ROC": "Tạo mới vì chưa có biểu đồ Bước 09 hợp lệ ở local",
+    "PR": "Tạo mới vì chưa có biểu đồ Bước 09 hợp lệ ở local"
+  },
+  "no_refit": true,
+  "no_recalibration": true,
+  "no_news": true,
+  "test_predictions_unchanged": true,
+  "sources": {
+    "test": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\08_test_evaluation_A\\08_test_predictions_A.csv",
+    "features": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\03_feature_engineering\\03_features_all.csv",
+    "cal": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\07_threshold_calibration_A\\07_calibration_scores.csv",
+    "thresholds": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\07_threshold_calibration_A\\07_thresholds.json",
+    "policy": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\07_P0_final_pretest_A\\07_A_P0_frozen_policy.json",
+    "qa": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\08_test_evaluation_A\\08_test_QA_manifest.json"
+  }
+}

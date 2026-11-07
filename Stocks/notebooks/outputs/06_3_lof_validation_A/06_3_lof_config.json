@@ -1,0 +1,81 @@
+{
+  "step": "06_3_lof_validation_A",
+  "role": "LOF là mô hình đối chiếu; IF là mô hình chính",
+  "input_file": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\03_feature_engineering\\03_model_ready_development.csv",
+  "input_sha256": "0f035c54869b7389548ce6ce0b574335ed149e8378b09351eaa8245b840f472a",
+  "train_n": 10387,
+  "val_select_n": 1430,
+  "features": [
+    "z_gap",
+    "z_intraday",
+    "z_range",
+    "z_volume"
+  ],
+  "W": 60,
+  "scaler": "Step03 rolling median/MAD; no second scaler",
+  "baseline": {
+    "n_neighbors": 20,
+    "metric": "minkowski",
+    "p": 2,
+    "novelty": true,
+    "contamination": "auto"
+  },
+  "configurations": [
+    {
+      "n_neighbors": 10,
+      "p": 2
+    },
+    {
+      "n_neighbors": 20,
+      "p": 2
+    },
+    {
+      "n_neighbors": 35,
+      "p": 2
+    },
+    {
+      "n_neighbors": 50,
+      "p": 2
+    },
+    {
+      "n_neighbors": 100,
+      "p": 2
+    },
+    {
+      "n_neighbors": 20,
+      "p": 1
+    }
+  ],
+  "top_rates": [
+    0.01,
+    0.02,
+    0.05
+  ],
+  "test_and_calibrate_used": false,
+  "technical_checks": {
+    "previous_scores_found": true,
+    "source_sha256_correct": true,
+    "n_train": 10387,
+    "n_val_select": 1430,
+    "max_abs_difference_from_step05": 5.931091306976555e-08,
+    "match_step05_within_1e-5": true,
+    "repeat_fit_max_abs_diff": 0.0,
+    "model_file_created": true,
+    "reload_max_abs_diff": 0.0
+  },
+  "versions": {
+    "python": "3.12.1",
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1"
+  },
+  "limits": [
+    "Không có nhãn bất thường thật: không suy ra Accuracy/Precision/Recall/F1.",
+    "Top-k phục vụ phân tích, không phải ngưỡng cảnh báo đã hiệu chỉnh.",
+    "LOF novelty=True: score_samples chỉ cho phiên mới, không so với negative_outlier_factor_ Train.",
+    "So sánh thứ hạng và nhóm top-k; không so trực tiếp điểm với IF/AE.",
+    "Thử số hàng xóm và khoảng cách không chứng minh cấu hình nào chính xác nhất.",
+    "Chưa thử thay W, mức sàn hay biến đổi OHLCV (dành cho Bước 06.4)."
+  ]
+}

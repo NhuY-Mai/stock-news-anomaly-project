@@ -1,0 +1,9 @@
+﻿pattern,n_sessions
+none,946
+IF_only,3
+AE_only,2
+LOF_only,2
+IF_AE,1
+IF_LOF,1
+AE_LOF,2
+all_three,5

@@ -1,0 +1,7 @@
+﻿split,val_role,feature_status,sessions
+test,not_applicable,ok,2405
+train,not_applicable,insufficient_valid_history,780
+train,not_applicable,invalid_raw_feature,13
+train,not_applicable,ok,10387
+val,calibrate,ok,962
+val,select,ok,1430

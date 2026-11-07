@@ -1,0 +1,43 @@
+{
+  "step": "06_2_AE_validation_A",
+  "main_model": "IF",
+  "model_under_test": "AE (comparison)",
+  "input_sha256": "0f035c54869b7389548ce6ce0b574335ed149e8378b09351eaa8245b840f472a",
+  "train_n": 10387,
+  "val_select_n": 1430,
+  "features": [
+    "z_gap",
+    "z_intraday",
+    "z_range",
+    "z_volume"
+  ],
+  "architecture": "4-2-4 (Tanh hidden, linear output)",
+  "optimizer": "Adam",
+  "loss": "MSE",
+  "seeds": [
+    7,
+    19,
+    42,
+    73,
+    101
+  ],
+  "lr_main": 0.001,
+  "lr_alternatives": [
+    0.0005,
+    0.002
+  ],
+  "max_epochs": 1500,
+  "batch_size": 512,
+  "patience": 80,
+  "min_delta": 1e-05,
+  "floor_and_W": "Unchanged from Step 03: W=60, train-only floor",
+  "test_policy": "Test not accessed; Val-calibrate metadata filtered out before modeling; no threshold or proxy labels",
+  "reproduction": {
+    "previous_checkpoint_found": true,
+    "previous_scores_found": true,
+    "recomputed_val_mse": 1.2263565243163204,
+    "max_abs_score_diff": 1.943359379197318e-06
+  },
+  "torch": "2.15.0+cpu",
+  "python": "3.12.1"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "P0_final_std20_mean20_OR",
+  "status": "APPROVED_IN_CONVERSATION",
+  "source_input": [
+    "ticker",
+    "date",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "used_ohlcv": [
+    "ticker",
+    "date",
+    "close",
+    "volume"
+  ],
+  "historical_window": 20,
+  "return": "ln(close_t / prior_valid_close_t)",
+  "past_volatility": "std(last 20 prior log close-to-close returns, ddof=1)",
+  "price_rule": "abs(return_t) > 2 * past_volatility",
+  "past_mean_volume": "mean(last 20 prior eligible session volumes)",
+  "volume_rule": "volume_t > 3 * past_mean_volume",
+  "combine": "price_rule OR volume_rule",
+  "missing_history": "not_eligible, never cast missing to proxy=0",
+  "valid_data_scope": "Train + Val-select only",
+  "proxy_intended_meaning": "large absolute close-close move OR unusual volume surge",
+  "proxy_not_ground_truth": true,
+  "proxy_not_used_for_model_fit_or_threshold": true,
+  "does_not_cover": [
+    "intraday reversal with little close-close move",
+    "range-only anomaly",
+    "volume collapse"
+  ]
+}

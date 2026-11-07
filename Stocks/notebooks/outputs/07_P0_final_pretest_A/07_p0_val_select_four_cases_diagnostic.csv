@@ -1,0 +1,13 @@
+﻿model,diagnostic_only,threshold_source,model_flag,proxy_P0,n_sessions
+IF,True,Val-select_Q99_not_official,1,1,10
+IF,True,Val-select_Q99_not_official,1,0,5
+IF,True,Val-select_Q99_not_official,0,1,139
+IF,True,Val-select_Q99_not_official,0,0,1276
+AE,True,Val-select_Q99_not_official,1,1,13
+AE,True,Val-select_Q99_not_official,1,0,2
+AE,True,Val-select_Q99_not_official,0,1,136
+AE,True,Val-select_Q99_not_official,0,0,1279
+LOF,True,Val-select_Q99_not_official,1,1,14
+LOF,True,Val-select_Q99_not_official,1,0,1
+LOF,True,Val-select_Q99_not_official,0,1,135
+LOF,True,Val-select_Q99_not_official,0,0,1280

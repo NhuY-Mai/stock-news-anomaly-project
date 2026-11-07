@@ -1,0 +1,21 @@
+{
+  "train": 10387,
+  "val_select": 1430,
+  "n_synthetic_base_sessions": 156,
+  "n_synthetic_modified_sessions": 936,
+  "n_invalid_synthetic_ohlcv": 0,
+  "n_synthetic_scenarios": 6,
+  "n_w_floor_cases": 5,
+  "ae_checkpoint": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_2_ae_validation_A\\06_2_ae_seed42_lr001_epoch1495_best.pt",
+  "ae_checkpoint_epoch": 1495,
+  "ae_refit_in_w_floor": true,
+  "no_test_or_calibrate_used": true,
+  "warning_no_official_HOSE_band_or_tick_check": true,
+  "no_proxy_no_alert_threshold": true,
+  "input_sha256": "0f035c54869b7389548ce6ce0b574335ed149e8378b09351eaa8245b840f472a",
+  "baseline_model_files": {
+    "IF": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\05_model_training_A\\05_if.joblib",
+    "AE": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_2_ae_validation_A\\06_2_ae_seed42_lr001_epoch1495_best.pt",
+    "LOF": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_3_lof_validation_A\\06_3_lof_baseline_k20_euclidean.joblib"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "step": "07_threshold_calibration_A",
+  "created_at_utc": "2026-11-04T16:42:32.798334+00:00",
+  "root": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks",
+  "features": [
+    "z_gap",
+    "z_intraday",
+    "z_range",
+    "z_volume"
+  ],
+  "W": 60,
+  "train_floors": {
+    "gap": 0.0020925944949720995,
+    "intraday": 0.008589034759705396,
+    "range": 0.00603250575348998,
+    "volume": 0.36116820330395477
+  },
+  "quantile_predeclared": 0.99,
+  "comparison_rule": "score > threshold",
+  "n_val_select_reproduction": 1430,
+  "n_val_calibration": 962,
+  "calibration_period": [
+    "2025-09-11",
+    "2025-12-23"
+  ],
+  "input_paths_and_sha256": {
+    "dev": {
+      "path": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\03_feature_engineering\\03_model_ready_development.csv",
+      "sha256": "0f035c54869b7389548ce6ce0b574335ed149e8378b09351eaa8245b840f472a"
+    },
+    "features_all": {
+      "path": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\03_feature_engineering\\03_features_all.csv",
+      "sha256": "959f9e2036beeb653e5ddd5c06f807b3ee24a4810a20bae47f2454490aea3440"
+    },
+    "feature_config": {
+      "path": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\03_feature_engineering\\03_feature_config.json",
+      "sha256": "afc5f76196743313baff3dd5537a3f906961b648cd26e669d574c31318575386"
+    },
+    "if": {
+      "path": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\05_model_training_A\\05_if.joblib",
+      "sha256": "a5ddf458c17e0cc2ef508da49f2d985d930caf2e65a0f5b44af4972491db9af2"
+    },
+    "ae": {
+      "path": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_2_ae_validation_A\\06_2_ae_seed42_lr001_epoch1495_best.pt",
+      "sha256": "313c753b1ee854582bfa625d3225239a0c693d67b83144e586358b72e2d4f512"
+    },
+    "lof": {
+      "path": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_3_lof_validation_A\\06_3_lof_baseline_k20_euclidean.joblib",
+      "sha256": "89ac10f01b19b9168691d7ef81171854dc07901f032e45757f762534b54e4939"
+    },
+    "baseline_06_5": {
+      "path": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_5_model_comparison_A\\06_5_aligned_val_scores.csv",
+      "sha256": "6d158bb86836d6efa966174709d6230a1fd088f3d8c4f5aa220e8756398a853c"
+    }
+  },
+  "model_reproduction": [
+    {
+      "model": "IF",
+      "n_val_select": 1430,
+      "max_abs_score_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    {
+      "model": "AE",
+      "n_val_select": 1430,
+      "max_abs_score_diff": 0.0,
+      "tolerance": 0.0005,
+      "passed": true
+    },
+    {
+      "model": "LOF",
+      "n_val_select": 1430,
+      "max_abs_score_diff": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    }
+  ],
+  "scikit_learn_version_current": "1.9.1",
+  "torch_version_current": "2.15.0+cpu",
+  "python_version_current": "3.12.1",
+  "scikit_learn_version_warnings": [],
+  "no_training_or_threshold_tuning_on_calibration": true,
+  "no_test_scored": true
+}

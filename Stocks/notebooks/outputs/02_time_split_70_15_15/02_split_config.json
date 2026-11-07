@@ -1,0 +1,34 @@
+{
+  "input_file": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\01_data_cleaned.csv",
+  "input_sha256": "947a0c6e822154f47a50106b2f2a297a91f99f94bc0d8ce27e7bf123569d9fa2",
+  "input_separator": ";",
+  "input_date_format": "%d/%m/%Y",
+  "source_columns_used": [
+    "ticker",
+    "date",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "split_basis": "distinct observed market dates; same boundaries for all 13 tickers",
+  "target_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "days": {
+    "total": 1230,
+    "train": 861,
+    "val": 184,
+    "test": 185
+  },
+  "boundaries": {
+    "train_end": "2025-04-01",
+    "val_end": "2025-12-23",
+    "val_select_end": "2025-09-10"
+  },
+  "val_select_fraction_by_days": 0.6,
+  "feature_engineering_rule": "causal per-ticker rolling on continuous history, never restart at split boundaries"
+}

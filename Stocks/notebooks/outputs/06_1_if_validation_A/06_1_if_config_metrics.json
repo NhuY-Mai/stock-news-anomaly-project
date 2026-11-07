@@ -1,0 +1,78 @@
+{
+  "step": "06_1_if_baseline_A_validation",
+  "input_sha256": "0f035c54869b7389548ce6ce0b574335ed149e8378b09351eaa8245b840f472a",
+  "train_n": 10387,
+  "val_select_n": 1430,
+  "baseline": {
+    "trees": 200,
+    "max_samples": 256,
+    "seed": 42,
+    "contamination": "auto",
+    "scoring": "-score_samples"
+  },
+  "all_test_data_unused": true,
+  "all_validation_calibrate_unused": true,
+  "seeds": [
+    7,
+    19,
+    42,
+    73,
+    101
+  ],
+  "grid": [
+    {
+      "trees": 100,
+      "max_samples": 256
+    },
+    {
+      "trees": 200,
+      "max_samples": 256
+    },
+    {
+      "trees": 400,
+      "max_samples": 256
+    },
+    {
+      "trees": 200,
+      "max_samples": 128
+    },
+    {
+      "trees": 200,
+      "max_samples": 512
+    }
+  ],
+  "top_n": {
+    "0.01": 15,
+    "0.02": 29,
+    "0.05": 72
+  },
+  "reproduction": {
+    "old_scores_found": true,
+    "max_abs_difference": 0.0,
+    "matched_rows": 1430
+  },
+  "baseline_seed_pairwise": {
+    "spearman_median": 0.9899256597066123,
+    "spearman_min": 0.9874179037282936,
+    "top1_overlap_pct_median": 86.66666666666667,
+    "top1_overlap_pct_min": 80.0,
+    "top5_overlap_pct_median": 91.66666666666667,
+    "top5_overlap_pct_min": 87.5
+  },
+  "gap_extreme_count_train": 14,
+  "gap_extreme_count_val_select": 9,
+  "software": {
+    "python": "3.12.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "sklearn": "1.9.1"
+  },
+  "limitations": [
+    "No ground-truth labels; metrics are stability/consistency only",
+    "Top-K comparison is an analyst review diagnostic, not a calibrated alert threshold",
+    "Only W=60 fixed feature input is used, no W/floor tuning",
+    "Ablation refits with three features; rank change is not causal feature importance",
+    "Train contains possible anomalies; no sessions deleted",
+    "Previously used Test period must be audited before calling final Test independent"
+  ]
+}

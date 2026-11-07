@@ -1,0 +1,54 @@
+{
+  "step": "07_threshold_calibration_A",
+  "method": "pooled_global_per_model_empirical_quantile",
+  "quantile": 0.99,
+  "numpy_quantile_method": "linear",
+  "rule": "score > threshold",
+  "score_direction": "higher_is_more_anomalous",
+  "calibration_split": "val",
+  "calibration_val_role": "calibrate",
+  "n_calibration": 962,
+  "calibration_first_date": "2025-09-11",
+  "calibration_last_date": "2025-12-23",
+  "feature_cols": [
+    "z_gap",
+    "z_intraday",
+    "z_range",
+    "z_volume"
+  ],
+  "feature_engineering": "W60, 1.4826*MAD + Train-only floor, Step03",
+  "thresholds": {
+    "IF": {
+      "threshold": 0.6963008453957038,
+      "role": "main",
+      "score_column": "score_if",
+      "prediction_column": "if_prediction",
+      "n_calibration_alerts": 10
+    },
+    "AE": {
+      "threshold": 6.434375882148741,
+      "role": "comparison",
+      "score_column": "score_ae",
+      "prediction_column": "ae_prediction",
+      "n_calibration_alerts": 10
+    },
+    "LOF": {
+      "threshold": 1.5121942079067223,
+      "role": "comparison",
+      "score_column": "score_lof",
+      "prediction_column": "lof_prediction",
+      "n_calibration_alerts": 10
+    }
+  },
+  "model_sha256": {
+    "IF": "a5ddf458c17e0cc2ef508da49f2d985d930caf2e65a0f5b44af4972491db9af2",
+    "AE": "313c753b1ee854582bfa625d3225239a0c693d67b83144e586358b72e2d4f512",
+    "LOF": "89ac10f01b19b9168691d7ef81171854dc07901f032e45757f762534b54e4939"
+  },
+  "feature_config_sha256": "afc5f76196743313baff3dd5537a3f906961b648cd26e669d574c31318575386",
+  "feature_data_sha256": "959f9e2036beeb653e5ddd5c06f807b3ee24a4810a20bae47f2454490aea3440",
+  "source_for_calibration": "03_model_ready_development.csv only; full features file used for sha256 provenance only",
+  "no_refit": true,
+  "no_test_scoring": true,
+  "no_proxy_news_or_actual_labels": true
+}

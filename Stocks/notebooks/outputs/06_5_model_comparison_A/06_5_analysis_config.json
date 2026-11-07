@@ -1,0 +1,81 @@
+{
+  "step": "06_5_model_comparison_A",
+  "if_main_model": true,
+  "val_select_n": 1430,
+  "features": [
+    "z_gap",
+    "z_intraday",
+    "z_range",
+    "z_volume"
+  ],
+  "top_rates": [
+    0.01,
+    0.02,
+    0.05
+  ],
+  "no_test_no_calibrate_no_proxy": true,
+  "no_model_refitting": true,
+  "w_floor_full_ae_verified": true,
+  "baseline_max_abs_difference": {
+    "IF": 0.0,
+    "AE": 0.0,
+    "LOF": 0.0
+  },
+  "sources": {
+    "dev": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\03_feature_engineering\\03_model_ready_development.csv",
+      "sha256": "0f035c54869b7389548ce6ce0b574335ed149e8378b09351eaa8245b840f472a"
+    },
+    "if": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_1_if_validation_A\\06_1_baseline_val_scores.csv",
+      "sha256": "2f7d5b1f6fd0d09b8f7a22d6ffdb07b130937764802c34fa40db351218598b96"
+    },
+    "ae": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_2_ae_validation_A\\06_2_ae_val_select_scores_seed42.csv",
+      "sha256": "7491522a7e5e6b91ed345c234bae729b585a5d466786587f05b89a28e96f46b4"
+    },
+    "lof": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_3_lof_validation_A\\06_3_lof_baseline_val_scores.csv",
+      "sha256": "69109a8451202fc96e123fe2b34deb1fcd91bbeba4bb84e07d48b3e58895d91f"
+    },
+    "full_scores": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_4_joint_behavior_A_full\\06_4_w_floor_scores.csv",
+      "sha256": "d779cb91653d40a80952207a56a9f7428dbf8cb88bb27dfd1e5d48ba23fdb711"
+    },
+    "full_sensitivity": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_4_joint_behavior_A_full\\06_4_w_floor_sensitivity.csv",
+      "sha256": "a7ee04b62feab71aa7b925abbf020f05ef5d5bbc04f59deb7df08625d0e313f8"
+    },
+    "synthetic_pairs": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_4_joint_behavior_A_full\\06_4_synthetic_pairs.csv",
+      "sha256": "ea09dd56a530a0bf1d55b82f752e76f2ee3392fda25191ee189b3f3a308cc16c"
+    },
+    "synthetic_summary": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_4_joint_behavior_A_full\\06_4_synthetic_summary.csv",
+      "sha256": "ee4378f2ac16ae09080556e89c7452382ded55dcba25a34ab3e8687f9290c2fb"
+    },
+    "full_config": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_4_joint_behavior_A_full\\06_4_run_config.json",
+      "sha256": "39d3fa0ab4227a57ccd2778903bd77f4f6e3cc54c221e557dc96a1361c8819e3"
+    },
+    "if_stability": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_1_if_validation_A\\06_1_stability_summary.csv",
+      "sha256": "72f3f07628c43bee64ce710084f95585c5cd504de28e6e987419f1d83cc0cd83"
+    },
+    "ae_stability": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_2_ae_validation_A\\06_2_ae_seed_pairwise.csv",
+      "sha256": "9563c2e51cf4691195f7b2934277c27632acab66d69fea415dc24e2aa44c32f2"
+    },
+    "lof_sensitivity": {
+      "path": "d:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\06_3_lof_validation_A\\06_3_lof_config_comparison.csv",
+      "sha256": "786b87a62cdfa4facf051713f2602df866b5dee229cc795864b3433634924d73"
+    }
+  },
+  "limitations": [
+    "No actual labels",
+    "W window affects Train size",
+    "Top-k overlap is not accuracy",
+    "Synthetic OHLCV not fully checked against HOSE trading rules",
+    "Test historical reuse unresolved"
+  ]
+}
