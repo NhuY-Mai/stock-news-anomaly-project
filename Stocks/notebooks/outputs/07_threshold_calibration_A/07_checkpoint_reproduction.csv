@@ -1,0 +1,4 @@
+﻿model,n_val_select,max_abs_score_diff,tolerance,passed
+IF,1430,0.0,1e-05,True
+AE,1430,0.0,0.0005,True
+LOF,1430,0.0,1e-05,True

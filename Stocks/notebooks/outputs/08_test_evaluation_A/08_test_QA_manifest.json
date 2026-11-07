@@ -1,0 +1,92 @@
+{
+  "step": "08_test_evaluation_A",
+  "created_at_utc": "2026-11-05T09:30:56.953391+00:00",
+  "test_first_date": "2025-12-24",
+  "test_last_date": "2026-09-25",
+  "n_test": 2405,
+  "n_tickers": 13,
+  "n_test_dates": 185,
+  "test_has_duplicate_ticker_date": false,
+  "test_four_features_finite": true,
+  "feature_recomputed_using_only_60_past_sessions": true,
+  "feature_max_abs_replay_diff": 0.0,
+  "feature_config_sha256": "afc5f76196743313baff3dd5537a3f906961b648cd26e669d574c31318575386",
+  "features_all_sha256": "959f9e2036beeb653e5ddd5c06f807b3ee24a4810a20bae47f2454490aea3440",
+  "model_sha256": {
+    "IF": "a5ddf458c17e0cc2ef508da49f2d985d930caf2e65a0f5b44af4972491db9af2",
+    "AE": "313c753b1ee854582bfa625d3225239a0c693d67b83144e586358b72e2d4f512",
+    "LOF": "89ac10f01b19b9168691d7ef81171854dc07901f032e45757f762534b54e4939"
+  },
+  "threshold_manifest_sha256": "fb255db81d4bec0977b5243f0f406b09b26025034b305817e8af9d485fcabc5e",
+  "frozen_policy_sha256": "8f2634979cebc91f5b1f65ff545dbd331f039fc38073c6d8d0c4ed713fcfebb1",
+  "pretest_gate_file_sha256": "5c57d00ff85ba90a106291fde1763a434ea686f7fce75610e8b700782be7217f",
+  "thresholds": {
+    "IF": 0.6963008453957038,
+    "AE": 6.434375882148741,
+    "LOF": 1.5121942079067223
+  },
+  "quantile_policy": "Q99 on Val-calibrate ONLY, locked before Test",
+  "rule": "score > threshold",
+  "score_higher_is_more_anomalous": true,
+  "reproduction_val_select": [
+    {
+      "model": "IF",
+      "n": 1430,
+      "max_abs_score_difference": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    },
+    {
+      "model": "AE",
+      "n": 1430,
+      "max_abs_score_difference": 0.0,
+      "tolerance": 0.0005,
+      "passed": true
+    },
+    {
+      "model": "LOF",
+      "n": 1430,
+      "max_abs_score_difference": 0.0,
+      "tolerance": 1e-05,
+      "passed": true
+    }
+  ],
+  "reproduction_calibration_thresholds": [
+    {
+      "model": "IF",
+      "threshold_locked": 0.6963008453957038,
+      "threshold_replay": 0.6963008453957038,
+      "abs_difference": 0.0
+    },
+    {
+      "model": "AE",
+      "threshold_locked": 6.434375882148741,
+      "threshold_replay": 6.434375882148741,
+      "abs_difference": 0.0
+    },
+    {
+      "model": "LOF",
+      "threshold_locked": 1.5121942079067223,
+      "threshold_replay": 1.5121942079067223,
+      "abs_difference": 0.0
+    }
+  ],
+  "sklearn_runtime_version": "1.9.1",
+  "torch_runtime_version": "2.15.0+cpu",
+  "python_runtime_version": "3.12.1",
+  "sklearn_version_warning_count": 0,
+  "sklearn_version_warning_sample": [],
+  "no_model_refit": true,
+  "no_feature_scaler_refit": true,
+  "no_threshold_recalibration_on_test": true,
+  "proxy_p0_used_in_scoring": false,
+  "proxy_p0_evaluation_deferred_to_step09": true,
+  "no_news_used": true,
+  "test_scored": true,
+  "result_files": {
+    "all_predictions": "08_test_predictions_A.csv",
+    "if_main_alerts": "08_test_IF_alerts_A.csv",
+    "locked_thresholds_used": "08_locked_thresholds_used.csv"
+  },
+  "output_predictions_sha256": "8060e318b07fb9d468ea1dfbb75382002b05fca5135d5ddffb92a7f70551139f"
+}

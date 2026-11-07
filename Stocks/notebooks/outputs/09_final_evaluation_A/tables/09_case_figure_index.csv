@@ -1,0 +1,9 @@
+﻿ticker,date,case_group,figure
+PNJ,2026-07-21,"IF=1, P0=0",09_case_PNJ_2026-07-21.png
+DGW,2026-07-28,"IF=1, P0=0",09_case_DGW_2026-07-28.png
+IMP,2026-04-22,IF=AE=LOF=1,09_case_IMP_2026-04-22.png
+IMP,2026-04-29,IF=AE=LOF=1,09_case_IMP_2026-04-29.png
+PNJ,2026-07-10,IF=AE=LOF=1,09_case_PNJ_2026-07-10.png
+DBC,2026-08-25,IF=AE=LOF=1,09_case_DBC_2026-08-25.png
+SBT,2026-08-13,"P0 price-only, IF=0",09_case_SBT_2026-08-13.png
+DHG,2026-08-05,"P0 volume-only, IF=0",09_case_DHG_2026-08-05.png

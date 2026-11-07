@@ -1,0 +1,4 @@
+﻿model,role,q,threshold,comparison_rule
+IF,main,0.99,0.6963008453957038,score > threshold
+AE,comparison,0.99,6.434375882148741,score > threshold
+LOF,comparison,0.99,1.512194207906722,score > threshold

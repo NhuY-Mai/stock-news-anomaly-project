@@ -1,0 +1,54 @@
+{
+  "experiment": "EXP1_A_P0",
+  "status": "READY_FOR_SEPARATE_TEST_EVALUATION",
+  "approval": "P0 accepted by user in current conversation",
+  "source_columns": [
+    "ticker",
+    "date",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "model_features": [
+    "z_gap",
+    "z_intraday",
+    "z_range",
+    "z_volume"
+  ],
+  "proxy_name": "P0_final_std20_mean20_OR",
+  "proxy_return": "ln(Close_t / previous_valid_Close)",
+  "proxy_price": "abs(return_t) > 2 * sample_std(previous_20_returns, ddof=1)",
+  "proxy_volume": "Volume_t > 3 * mean(previous_20_volumes)",
+  "proxy_combination": "OR",
+  "proxy_history": "ticker-specific, shift(1), no current/future observations",
+  "proxy_missing_history": "not eligible, not 0",
+  "proxy_not_ground_truth": true,
+  "proxy_not_for_fitting_or_threshold_selection": true,
+  "calibration_quantile": 0.99,
+  "threshold_method": "numpy_linear_percentile, score strictly > threshold",
+  "thresholds": {
+    "IF": 0.6963008453957038,
+    "AE": 6.434375882148741,
+    "LOF": 1.5121942079067223
+  },
+  "feature_window": 60,
+  "feature_config_sha256": "afc5f76196743313baff3dd5537a3f906961b648cd26e669d574c31318575386",
+  "feature_data_sha256": "959f9e2036beeb653e5ddd5c06f807b3ee24a4810a20bae47f2454490aea3440",
+  "development_data_sha256": "0f035c54869b7389548ce6ce0b574335ed149e8378b09351eaa8245b840f472a",
+  "val_select_score_sha256": "6d158bb86836d6efa966174709d6230a1fd088f3d8c4f5aa220e8756398a853c",
+  "step07_threshold_manifest_sha256": "fb255db81d4bec0977b5243f0f406b09b26025034b305817e8af9d485fcabc5e",
+  "model_sha256": {
+    "IF": "a5ddf458c17e0cc2ef508da49f2d985d930caf2e65a0f5b44af4972491db9af2",
+    "AE": "313c753b1ee854582bfa625d3225239a0c693d67b83144e586358b72e2d4f512",
+    "LOF": "89ac10f01b19b9168691d7ef81171854dc07901f032e45757f762534b54e4939"
+  },
+  "n_train_model_ready": 10387,
+  "n_val_select": 1430,
+  "n_val_calibrate": 962,
+  "n_val_select_proxy_positive": 149,
+  "test_scored": false,
+  "models_refit": false,
+  "test_policy": "Run once after this gate, score fixed models and rule on Test; no refit/recalibration"
+}

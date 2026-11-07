@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-25T13:59:00.136008+00:00",
+  "source_run": "20261024_153932_380173",
+  "checkpoint_epoch": 2,
+  "checkpoint_sha256": "f32f9d3b72ded3124bf43075ffc9d986b37d2d8cf830a3dc0b79e6a91be785aa",
+  "test_manifest_sha256": "a98bf032f6f5702c88e69c3aa98ffd11d3fcfc614a61c49699cd427b6f6cebb4",
+  "input_file_sha256": {
+    "data/processed/news_clean.csv": "1491092ae911ab5f280c747d5ebb27327ebcee50fa5915d526bc2b4f41d40444",
+    "data/annotation/news_type/news_manually_labeled.csv": "b5c5c062fcc244d37387587db9ffe890d757c951de921e4c86c49b1df33f216b",
+    "data/annotation/news_type/label_corrections.csv": "332fcbbeb4cb4e7140e3fece61006f0d7ebeaf275b0bddbc3792b8cdc9a0e5ef",
+    "data/interim/news_excluded_records.csv": "54d34324b5e7577dc9a404c1aef4c4339cbb80c6e52a7cf59bcb6b4e65065b0a",
+    "data/interim/duplicate_merge_log.csv": "510f82c26f2fccae17bb2d6d51e2b88804156b7018462093a674035959c25370",
+    "models/news_type_phobert_cnn/label_mapping.json": "cbf2d86bff834bd7762f6a9f98a4038cb1a26b722f464cc48d656a3a6bddb3da",
+    "data/annotation/news_type/validation_revision.json": "a70c645f018d739467ce15d947d27b276454022837f7c766f0393096ff6a2036",
+    "data/splits/news_type/train.csv": "1121c3d79dba52e32b361f91d3a38713817e2579ad4d3c48bf45c458b92e8b23",
+    "data/splits/news_type/validation.csv": "9be546e6cc1bd5b86e35b9fb70e62fdacfc7d2589e04af9001a2b798862eff45",
+    "data/splits/news_type/test.csv": "1e40f86ac0e85772ccbea65f0ee815eb78277ec91e0834de91d0c66aa4270bf0"
+  },
+  "label_mapping": {
+    "label_policy_version": "company_awards_listing_v2",
+    "label2id": {
+      "governance_capital": 0,
+      "financial_results": 1,
+      "business_operations": 2,
+      "legal_compliance": 3,
+      "industry": 4,
+      "stock_market": 5,
+      "mention_only": 6
+    },
+    "id2label": {
+      "0": "governance_capital",
+      "1": "financial_results",
+      "2": "business_operations",
+      "3": "legal_compliance",
+      "4": "industry",
+      "5": "stock_market",
+      "6": "mention_only"
+    },
+    "merged_labels": {
+      "macro": "industry"
+    },
+    "display_names": {
+      "governance_capital": "Quản trị, sở hữu và hành động vốn",
+      "financial_results": "Kết quả kinh doanh và tài chính",
+      "business_operations": "Hoạt động kinh doanh và đầu tư",
+      "legal_compliance": "Pháp lý và tuân thủ doanh nghiệp",
+      "industry": "Ngành, chuỗi giá trị và kinh tế vĩ mô",
+      "stock_market": "Thị trường chứng khoán và định giá",
+      "mention_only": "Tổng hợp hoặc ít liên quan"
+    }
+  },
+  "preprocessing": {
+    "max_length": 256,
+    "head_ratio": 0.75,
+    "segmenter_sha256": {
+      "VnCoreNLP-1.2.jar": "9e2811cdbc2ddfc71d04be5dc36e185c88dcd1ad4d5d69e4ff2e1369dccf7793",
+      "models/wordsegmenter/vi-vocab": "0a47c5b55bbce163029d37730a67b9479740388695c29c106c112b815613eaa5",
+      "models/wordsegmenter/wordsegmenter.rdr": "9e62f96bd93e37a24f364238e8d8ae986fa5dad6dbc9f4eae622ab3651b7fa06"
+    }
+  },
+  "label_source_counts": {
+    "model": 2260,
+    "manual": 1058,
+    "review_required": 38
+  },
+  "output_rows": 3356,
+  "output_columns": [
+    "news_id",
+    "news_type",
+    "label_source",
+    "prediction_score"
+  ],
+  "output_csv_sha256": "b8b6bc9aad71e28f316d59e1abbd2a676e6b55481244904ffbcbba47c651e313",
+  "human_annotations_modified": false,
+  "score_description": "Uncalibrated maximum Softmax score; blank for manual/review_required."
+}

@@ -1,0 +1,4 @@
+﻿model,max_abs_score_diff,tolerance,model_file
+IF,0.0,1e-05,d:\LUẬN VĂN\stock-news-anomaly-project\Stocks\notebooks\outputs\05_model_training_A\05_if.joblib
+AE,0.0,0.0005,d:\LUẬN VĂN\stock-news-anomaly-project\Stocks\notebooks\outputs\06_2_ae_validation_A\06_2_ae_seed42_lr001_epoch1495_best.pt
+LOF,0.0,1e-05,d:\LUẬN VĂN\stock-news-anomaly-project\Stocks\notebooks\outputs\06_3_lof_validation_A\06_3_lof_baseline_k20_euclidean.joblib

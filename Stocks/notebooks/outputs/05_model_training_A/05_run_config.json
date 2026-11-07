@@ -1,0 +1,58 @@
+{
+  "experiment": "EX1_baseline_A_step05",
+  "input_path": "D:\\LUẬN VĂN\\stock-news-anomaly-project\\Stocks\\notebooks\\outputs\\03_feature_engineering\\03_model_ready_development.csv",
+  "input_sha256": "0f035c54869b7389548ce6ce0b574335ed149e8378b09351eaa8245b840f472a",
+  "features": [
+    "z_gap",
+    "z_intraday",
+    "z_range",
+    "z_volume"
+  ],
+  "normalization": "Step03 rolling median/MAD W=60; no second scaler",
+  "train_rows": 10387,
+  "val_select_rows": 1430,
+  "train_max_date": "2025-04-01",
+  "val_select_max_date": "2025-09-10",
+  "random_seed": 42,
+  "if": {
+    "n_estimators": 200,
+    "max_samples": 256,
+    "max_features": 1.0,
+    "contamination": "auto"
+  },
+  "lof": {
+    "n_neighbors": 20,
+    "metric": "minkowski",
+    "p": 2,
+    "novelty": true,
+    "contamination": "auto"
+  },
+  "ae": {
+    "architecture": "4-tanh(2)-4_linear",
+    "loss": "MSE",
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "batch_size": 512,
+    "max_epochs": 1000,
+    "early_stopping_patience": 30,
+    "early_stopping_min_delta": 1e-05,
+    "best_epoch": 997,
+    "epochs_executed": 1000,
+    "best_val_select_mse": 1.2263566255569458,
+    "early_stopping_triggered": false,
+    "warning": "AE reached max epochs before early stopping"
+  },
+  "policies": [
+    "no Test or Val-calibrate used",
+    "no alert thresholds in Step05",
+    "no gap-row removal",
+    "LOF train negative_outlier_factor not compared to novelty score"
+  ],
+  "versions": {
+    "python": "3.12.1",
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "torch": "2.15.0+cpu"
+  }
+}

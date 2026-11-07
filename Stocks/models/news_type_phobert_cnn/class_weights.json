@@ -1,0 +1,22 @@
+{
+  "train_size": 740,
+  "num_classes": 7,
+  "weights_by_id": {
+    "0": 0.9973,
+    "1": 0.8525,
+    "2": 0.5082,
+    "3": 2.9365,
+    "4": 1.6518,
+    "5": 0.7393,
+    "6": 1.7918
+  },
+  "weights_by_label": {
+    "governance_capital": 0.9973,
+    "financial_results": 0.8525,
+    "business_operations": 0.5082,
+    "legal_compliance": 2.9365,
+    "industry": 1.6518,
+    "stock_market": 0.7393,
+    "mention_only": 1.7918
+  }
+}

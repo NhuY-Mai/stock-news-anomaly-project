@@ -1,0 +1,21 @@
+{
+  "step": "04_feature_validation",
+  "result": "TECHNICAL_PASS_WITH_METHODOLOGY_WARNINGS",
+  "config_w": 60,
+  "train_rows_ready": 10387,
+  "val_select_rows_ready": 1430,
+  "full_data_rows_structurally_checked": 15977,
+  "test_policy": "Test only checked for arithmetic integrity; no exploratory distributions or model selection",
+  "gap_flag_threshold_for_review_only": 30.0,
+  "n_large_gap_train": 14,
+  "large_gap_train_share_all_features_squared_pct": 52.17651919641462,
+  "qa_checks_passed": 8,
+  "warnings": [
+    "Có 14 phiên Train với |z_gap| > 30; rà giá gốc và thang chuẩn hóa, không tự loại.",
+    "Có 7 tổ hợp mã–đặc trưng sử dụng sàn >25% (Train + Val select).",
+    "Tên trạng thái 'invalid_raw_feature' cho phiên đầu mỗi mã nên được diễn giải thành 'missing_previous_close' — OHLCV không sai.",
+    "Không có kiểm chứng độc lập nguồn giá cho các phiên gap cực trị trong Bước 04.",
+    "Tính độc lập của giai đoạn Test trước ảnh hưởng notebook cũ vẫn cần được xác minh trước đánh giá cuối."
+  ],
+  "next": "Rà các phiên gap lớn và sự lệch thang theo mã; chỉ thử cấu hình/mô hình trên Train và Val select, không dùng Val calibrate/Test"
+}

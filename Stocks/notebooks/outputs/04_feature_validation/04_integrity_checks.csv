@@ -1,0 +1,9 @@
+﻿check,status
+"13 mã, khóa duy nhất, OHLCV hợp lệ và mốc thời gian không chồng lấn",PASS
+"Bốn công thức thô, Close trước, đồng nhất thức lợi suất và phiên High=Low",PASS
+Rolling median/MAD W giá trị quá khứ của từng mã,PASS
+"Fit 4 mức sàn chỉ trên Train, chuẩn hóa z, cờ MAD=0 / floor và tính đủ điều kiện",PASS
+File Development đúng tập con Train/Validation; không chứa Test,PASS
+Bảng Coverage và Feature Status khớp dữ liệu từng dòng,PASS
+"Đối chiếu SHA256, OHLCV và nhãn của file Bước 02",PASS
+Tiền tố Train không bị ảnh hưởng bởi dữ liệu xảy ra sau Train,PASS

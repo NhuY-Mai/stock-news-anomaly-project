@@ -1,0 +1,4 @@
+﻿top_rate,top_n,all_three_count,any_model_count,if_only_count,ae_only_count,lof_only_count,at_least_two_count
+0.01,15,4,28,7,5,3,13
+0.02,29,9,53,12,7,9,25
+0.05,72,30,112,7,14,17,74

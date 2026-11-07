@@ -1,0 +1,55 @@
+{
+  "input_02_ohlcv_sha256": "1ea6893529984cc466d44dd2451410f6ae562bffd3c322ce1dcfd308e6b40847",
+  "input_02_manifest_sha256": "e7b19b4d2dac4aaace15f1384822cef7e7a856fa3a031f68f748b9a2bf162c73",
+  "source_columns": [
+    "ticker",
+    "date",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "split_rule": "reuse Step 02 labels; no split refit",
+  "window_prior_valid_feature_values_per_ticker": 60,
+  "mad_definition": "median(abs(past_window - median(past_window)))",
+  "mad_normal_factor": 1.4826,
+  "train_floor_quantile_positive_mad_scales": 0.1,
+  "train_floors": {
+    "gap": 0.0020925944949720995,
+    "intraday": 0.008589034759705396,
+    "range": 0.00603250575348998,
+    "volume": 0.36116820330395477
+  },
+  "train_diagnostics": {
+    "gap": {
+      "floor": 0.0020925944949720995,
+      "mad_zero_train_ready": 30,
+      "floor_applied_train_ready": 1062
+    },
+    "intraday": {
+      "floor": 0.008589034759705396,
+      "mad_zero_train_ready": 0,
+      "floor_applied_train_ready": 1037
+    },
+    "range": {
+      "floor": 0.00603250575348998,
+      "mad_zero_train_ready": 0,
+      "floor_applied_train_ready": 1038
+    },
+    "volume": {
+      "floor": 0.36116820330395477,
+      "mad_zero_train_ready": 0,
+      "floor_applied_train_ready": 1038
+    }
+  },
+  "features_for_model": [
+    "z_gap",
+    "z_intraday",
+    "z_range",
+    "z_volume"
+  ],
+  "normalization": "z=(raw - past_median)/max(1.4826*past_MAD, train_floor)",
+  "first_gap_rule": "prior valid trading session close within cleaned per-ticker history",
+  "test_policy": "Causal Test features computed; no Test analysis used to choose W, floor or features"
+}
