@@ -105,6 +105,126 @@ def test_consolidate_article_duplicates_merges_exact_content_across_dates():
     assert merge_log.iloc[0]["duplicate_reasons"] == "exact_content"
 
 
+def _approved_duplicate_test_rule(kept_content: str, removed_content: str):
+    return {
+        "removed-id": {
+            "kept_news_id": "kept-id",
+            "removed_content_sha256": hashlib.sha256(
+                removed_content.encode("utf-8")
+            ).hexdigest(),
+            "kept_content_sha256": hashlib.sha256(
+                kept_content.encode("utf-8")
+            ).hexdigest(),
+        },
+    }
+
+
+def test_approved_duplicate_merge_keeps_reviewed_representative(monkeypatch):
+    kept_content = "Nội dung đầy đủ của bài được giữ lại."
+    removed_content = "Bản ngắn."
+    monkeypatch.setattr(
+        cleaning_helpers,
+        "APPROVED_DUPLICATE_MERGES",
+        _approved_duplicate_test_rule(kept_content, removed_content),
+    )
+    data = pd.DataFrame([
+        _article(
+            news_id="unrelated-id",
+            url="https://example.com/unrelated",
+            title="Bài không liên quan",
+            content="Nội dung không liên quan",
+            source_news_ids="unrelated-id",
+            source_content_hashes="hash-unrelated",
+        ),
+        _article(
+            news_id="removed-id",
+            url="https://example.com/short",
+            title="Tiêu đề bản ngắn",
+            summary="Có nhiều metadata hơn",
+            author="Tác giả",
+            category="Doanh nghiệp",
+            content=removed_content,
+            tickers="VNM",
+            source_news_ids="removed-id",
+            source_content_hashes="hash-removed",
+        ),
+        _article(
+            news_id="kept-id",
+            url="https://example.com/full",
+            title="Tiêu đề bản đầy đủ",
+            content=kept_content,
+            tickers="MSN",
+            source_news_ids="kept-id",
+            source_content_hashes="hash-kept",
+        ),
+    ])
+
+    result, merge_log = consolidate_article_duplicates(data)
+
+    assert result["news_id"].tolist() == ["unrelated-id", "kept-id"]
+    kept = result.loc[result["news_id"].eq("kept-id")].iloc[0]
+    assert kept["content"] == kept_content
+    assert kept["tickers"] == "MSN, VNM"
+    assert kept["source_news_ids"] == "kept-id|removed-id"
+    assert kept["source_content_hashes"] == "hash-kept|hash-removed"
+    approved_log = merge_log.loc[
+        merge_log["duplicate_reasons"].eq("approved_near_duplicate")
+    ].iloc[0]
+    assert approved_log["kept_news_id"] == "kept-id"
+    assert approved_log["merged_news_ids"] == "kept-id|removed-id"
+    assert approved_log["rows_in_group"] == 2
+    assert approved_log["rows_removed"] == 1
+
+    repeated_result, repeated_log = consolidate_article_duplicates(result)
+    pd.testing.assert_frame_equal(repeated_result, result)
+    assert repeated_log.empty
+
+
+@pytest.mark.parametrize(
+    "problem", ["missing_kept", "changed_removed_content", "changed_kept_content"],
+)
+def test_approved_duplicate_merge_rejects_incomplete_or_changed_pair(
+    monkeypatch, problem,
+):
+    kept_content = "Nội dung đầy đủ của bài được giữ lại."
+    removed_content = "Bản ngắn."
+    monkeypatch.setattr(
+        cleaning_helpers,
+        "APPROVED_DUPLICATE_MERGES",
+        _approved_duplicate_test_rule(kept_content, removed_content),
+    )
+    articles = [
+        _article(
+            news_id="removed-id",
+            url="https://example.com/short",
+            title="Tiêu đề bản ngắn",
+            content=(
+                "Nội dung đã thay đổi"
+                if problem == "changed_removed_content" else removed_content
+            ),
+            source_news_ids="removed-id",
+            source_content_hashes="hash-removed",
+        ),
+    ]
+    if problem != "missing_kept":
+        articles.append(_article(
+            news_id="kept-id",
+            url="https://example.com/full",
+            title="Tiêu đề bản đầy đủ",
+            content=(
+                "Nội dung giữ lại đã thay đổi"
+                if problem == "changed_kept_content" else kept_content
+            ),
+            source_news_ids="kept-id",
+            source_content_hashes="hash-kept",
+        ))
+
+    with pytest.raises(ValueError, match=(
+        "pair is incomplete" if problem == "missing_kept" else "content changed"
+    )):
+        consolidate_article_duplicates(pd.DataFrame(articles))
+
+
 def test_content_cleaning_decodes_entities_and_normalizes_unicode():
     content = "Doanh&nbsp;thu\u200b tăng 12% &amp; lợi nhuận đạt 300 tỷ đồng. &#160;"
 
@@ -462,11 +582,48 @@ def test_cafef_submission_promotion_removed_not_normal_ranking_discussion():
 
 
 @pytest.fixture(scope="module")
-def reviewed_content_articles():
-    """Use immutable raw input, not a generated validation report or edited clean CSV."""
+def raw_news_articles():
+    """Load immutable raw input once for hash-locked cleaning decisions."""
     raw_path = Path(__file__).resolve().parents[1] / "data/raw/news_raw.csv"
-    raw = pd.read_csv(raw_path, dtype=str, keep_default_na=False)
-    articles = raw.loc[raw["news_id"].isin(REVIEWED_CONTENT_CORRECTIONS)].copy()
+    return pd.read_csv(raw_path, dtype=str, keep_default_na=False)
+
+
+def test_approved_duplicate_manifest_matches_immutable_raw_articles(raw_news_articles):
+    decisions = cleaning_helpers.APPROVED_DUPLICATE_MERGES
+    expected_ids = set(decisions) | {
+        decision["kept_news_id"] for decision in decisions.values()
+    }
+    articles = raw_news_articles.loc[
+        raw_news_articles["news_id"].isin(expected_ids)
+    ].copy()
+    assert len(articles) == len(expected_ids) == 4
+    assert articles["news_id"].is_unique
+    articles["content"] = articles.apply(
+        lambda row: clean_article_content(
+            row["content"], row["source"], row["title"], row["summary"],
+        ), axis=1,
+    )
+    cleaned_by_id = articles.set_index("news_id")["content"]
+
+    for removed_news_id, decision in decisions.items():
+        kept_news_id = decision["kept_news_id"]
+        removed_content = cleaned_by_id.at[removed_news_id]
+        kept_content = cleaned_by_id.at[kept_news_id]
+        assert hashlib.sha256(removed_content.encode("utf-8")).hexdigest() == (
+            decision["removed_content_sha256"]
+        )
+        assert hashlib.sha256(kept_content.encode("utf-8")).hexdigest() == (
+            decision["kept_content_sha256"]
+        )
+        assert len(kept_content) >= len(removed_content)
+
+
+@pytest.fixture(scope="module")
+def reviewed_content_articles(raw_news_articles):
+    """Use immutable raw input, not a generated validation report or edited clean CSV."""
+    articles = raw_news_articles.loc[
+        raw_news_articles["news_id"].isin(REVIEWED_CONTENT_CORRECTIONS)
+    ].copy()
     assert len(articles) == 3
     articles["content"] = articles.apply(
         lambda row: clean_article_content(

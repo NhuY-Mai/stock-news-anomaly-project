@@ -131,16 +131,36 @@ def test_duplicate_human_decisions_never_get_replaced_by_model(inputs, other_lab
     assert targets["news_id"].tolist() == ["target"]
 
 
-@pytest.mark.parametrize("label, status, note", [
-    ("", "review_required", ""), ("industry", "review_required", ""),
-    ("financial_results", "excluded", "Do not use"), ("industry", "", ""),
-    ("", "", "Human review started"),
+@pytest.mark.parametrize("label, status, note, expected_source", [
+    ("", "review_required", "", "review_required"),
+    ("industry", "review_required", "", "review_required"),
+    ("financial_results", "excluded", "Do not use", "excluded"),
+    ("industry", "", "", "review_required"),
+    ("", "", "Human review started", "review_required"),
 ])
-def test_unfinished_or_excluded_human_work_stays_on_hold(inputs, label, status, note):
+def test_human_review_state_is_preserved_without_becoming_a_model_target(
+    inputs, label, status, note, expected_source,
+):
     inputs["annotations"].loc[1, ANNOTATION_COLUMNS] = [label, status, note]
     plan, targets, _ = build_inference_plan(**inputs)
-    assert plan.iloc[2]["label_source"] == "review_required"
+    assert plan.iloc[2]["label_source"] == expected_source
     assert plan.iloc[2]["news_type"] == ""
+    assert targets["news_id"].tolist() == ["target"]
+
+
+def test_excluded_duplicate_alias_conflicting_with_manual_stays_under_review(inputs):
+    excluded_alias = annotation(
+        "alias", label="", status="excluded", annotator_note="Do not use this alias",
+    )
+    inputs["annotations"] = pd.concat([
+        inputs["annotations"], pd.DataFrame([excluded_alias]),
+    ], ignore_index=True)
+    inputs["duplicate_merge_log"] = pd.DataFrame([{
+        "kept_news_id": "manual", "merged_news_ids": "manual|alias",
+    }])
+    plan, targets, _ = build_inference_plan(**inputs)
+    assert plan.iloc[0]["label_source"] == "review_required"
+    assert plan.iloc[0]["news_type"] == ""
     assert targets["news_id"].tolist() == ["target"]
 
 
@@ -253,6 +273,25 @@ def test_merge_empty_prediction_pool_keeps_manual_and_review_rows(inputs):
     assert targets.empty
     result = combine_news_type_predictions(plan, pd.DataFrame(columns=PREDICTION_COLUMNS), LABELS)
     pd.testing.assert_frame_equal(plan, result)
+
+
+def test_merge_preserves_excluded_rows_and_rejects_predictions_for_them(inputs):
+    inputs["annotations"].loc[1, ANNOTATION_COLUMNS] = [
+        "financial_results", "excluded", "Human exclusion is final",
+    ]
+    plan, _, _ = build_inference_plan(**inputs)
+    assert plan["label_source"].tolist() == ["manual", "unlabeled", "excluded"]
+    predictions = pd.DataFrame([{
+        "news_id": "target", "news_type": "industry", "prediction_score": 0.8,
+    }], columns=PREDICTION_COLUMNS)
+    result = combine_news_type_predictions(plan, predictions, LABELS)
+    assert result["label_source"].tolist() == ["manual", "model", "excluded"]
+    assert result.loc[2, ["news_type", "prediction_score"]].tolist() == ["", ""]
+
+    overwrite = predictions.copy()
+    overwrite.loc[0, "news_id"] = "hold"
+    with pytest.raises(ValueError, match="exactly the unannotated articles"):
+        combine_news_type_predictions(plan, overwrite, LABELS)
 
 
 def encodings(ids):

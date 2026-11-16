@@ -1,5 +1,9 @@
 # News Processing
 
+Báo cáo News Type chính thức cho cả V1 và V2 nằm tại
+[`reports/news_type/README.md`](reports/news_type/README.md). Các số liệu News Type
+trong file đó là nguồn tham chiếu hiện hành.
+
 ## Quy trình
 
 - Chuẩn bị chung: EDA raw → clean dữ liệu.
@@ -28,7 +32,8 @@ news_processing/
 │   ├── splits/news_type/             # train.csv, validation.csv, test.csv
 │   └── annotation/news_type/
 │       ├── labeling_guidelines.md
-│       └── news_manually_labeled.csv
+│       ├── news_manually_labeled.csv
+│       └── review38/                  # Workbook nguồn và quyết định 34/4
 ├── models/news_type_phobert_cnn/label_mapping.json
 ├── reports/news_type/               # Lý do chọn mẫu, quota nguồn, độ bao phủ
 ├── src/
@@ -47,7 +52,7 @@ Notebook 02 tách boilerplate theo nguồn và lưu bài không đạt vào `dat
 
 Các báo cáo trong `reports/news_type` ghi lại đợt chọn 800 bài trước khi sửa boilerplate, không phải phân bố nhãn hiện tại. Không chạy lại lấy mẫu để thay thế những bài đã gán.
 
-Notebook 04 tạo ba tập train, validation và test khi chưa có; nếu đã có đủ ba file, giữ nguyên ID và thứ tự từng tập rồi cập nhật nhãn từ annotation. Thiếu một file hoặc thay đổi tập bài đủ điều kiện thì dừng, không tự chia lại. Trọng số lớp chỉ được tính từ train. Bộ nhãn huấn luyện vẫn có 7 lớp; `macro` được gộp vào `industry` khi ánh xạ.
+Notebook 04 tạo ba tập train, validation và test khi chưa có. Khi ba split baseline đã tồn tại, notebook chỉ làm mới đúng cohort ID đã khóa ở quy mô 740/159/159; các nhãn thủ công được chốt sau đó được báo cáo là nhãn tham chiếu ngoài cohort, không tự động đi vào train/validation/test. Trọng số lớp chỉ được tính từ train. Bộ nhãn huấn luyện vẫn có 7 lớp; `macro` được gộp vào `industry` khi ánh xạ.
 
 ### Nhất quán nhãn tin giá vàng
 
@@ -65,11 +70,19 @@ Phiên bản nhãn hiện tại là `company_awards_listing_v2`. Đợt này ch�
 
 Ba bài STT 11, 13, 15 được cắt đúng đoạn mã hóa/liên hệ hoặc footer đã đối chiếu, giữ nguyên phần tin. Hàm sửa nội dung chỉ chấp nhận hash gốc hoặc hash sau sửa đã duyệt và có thể chạy lại an toàn. Notebook 02 tái tạo được các sửa này; annotation và văn bản model được đồng bộ từ bộ clean.
 
-Hồ sơ `data/annotation/news_type/validation_revision.json` ghi 8 bài thay đổi (STT 11 có cả nhãn và nội dung), hash trước/sau và nguồn checkpoint. Người gán đã xác nhận STT 16, 18 cùng giữ `financial_results`, với lý do ở `resolved_reviews`; `pending_reviews` hiện rỗng. Xác nhận này không sửa CSV, nhãn, trạng thái hoặc membership. Train/test giữ nguyên byte; ID và thứ tự ba tập vẫn là 740/159/159; trọng số lớp từ train không đổi.
+Hồ sơ `data/annotation/news_type/validation_revision.json` ghi 8 bài thay đổi (STT 11 có cả nhãn và nội dung), hash trước/sau và nguồn checkpoint. Người gán đã xác nhận STT 16, 18 cùng giữ `financial_results`, với lý do ở `resolved_reviews`; `pending_reviews` hiện rỗng. Xác nhận này không sửa CSV, nhãn, trạng thái hoặc membership. Ở split legacy, train/test giữ nguyên byte; ID và thứ tự ba tập là 740/159/159, trọng số lớp từ train không đổi.
 
 Checkpoint vẫn thuộc lần train `20261024_153932_380173` và chính sách nhãn cũ. Khi review, code dựng ngược các sửa đã duyệt để kiểm tra hash toàn bộ validation cũ, đồng thời kiểm tra train/test, mapping, kiến trúc, tài nguyên tách từ và cấu hình model. Đây là quyền đánh giá lại validation có đối soát, không phải bỏ kiểm tra hash hoặc tiếp tục huấn luyện.
 
 Báo cáo validation sửa nhãn lưu riêng tại `reports/news_type/evaluations/validation_review_20261025_v2/` cùng `evaluation_config.json`. Không ghi đè báo cáo huấn luyện gốc hoặc dùng dự đoán cũ để giả lập suy luận mới. Việc xác nhận giữ nhãn STT 16, 18 không thay đổi đầu vào hay điểm validation đã tính; metadata của lần đánh giá trước vẫn được giữ theo thời điểm chạy. Không so trực tiếp điểm trước/sau sửa nhãn như mô hình tự cải thiện. Notebook vẫn chặn test nếu có bài chờ. Output test và hồ sơ bàn giao thuộc lần chạy ngày 25/10/2026 đã bật `EVALUATE_TEST = True`; sau đó cờ được đặt lại `False` để không tự đánh giá test khi chạy lại. Test đã được xem ở các phiên bản nhãn trước, nên không coi đây là một tập kiểm định cuối hoàn toàn chưa từng sử dụng.
+
+### Rà soát 38 bài ngày 05/11/2026
+
+Workbook đã duyệt được lưu tại `data/annotation/news_type/review38/review38_source.xlsx` và khóa bằng SHA-256 `898eff15947cf5f3fb55cb01116fe9161463bb6eff4f9f8b18fb4f1f1e094722`. Trong 38 bài, 34 bài nhận nhãn tham chiếu thủ công và 4 bài bị loại vì không đủ điều kiện gán một nhãn `news_type` nguyên vẹn. Quyết định từng bài và lý do loại nằm trong `data/annotation/news_type/review38/review38_resolution.csv`.
+
+Đợt rà soát tạo 34 quyết định nhãn thủ công và 4 quyết định excluded. Sau khi hợp nhất hai alias trùng, 32 bài review còn trong dữ liệu canonical: 26 bài được thêm vào train V2, 6 bài chồng lặp sự kiện với validation/test chỉ giữ làm nhãn manual và không train. V2 là thí nghiệm warm-start riêng; model được chọn cuối cùng vẫn là baseline V1 `20261024_153932_380173`.
+
+Đầu ra duy nhất là `data/processed/news_type_predictions.csv`: 3.354 dòng gồm 1.090 `manual`, 2.260 `model` và 4 `excluded`. Bốn bài excluded có `news_type` và `prediction_score` để trống, không vào train/evaluation và phải được lọc khỏi các phân tích cần nhãn. Metadata cùng tên ghi checksum, 4 ID bị loại, workbook nguồn và xác nhận model chính thức không thay đổi. Script `src/finalize_news_type_review.py` kiểm tra 34/4 rồi tái tạo đầu ra mà không cần retrain.
 
 Chạy `05_train_phobert_cnn.ipynb` sau notebook 04. Cài các gói trong `requirements.txt` và ưu tiên môi trường GPU với bản PyTorch hỗ trợ CUDA. Nếu không nhận GPU, notebook vẫn chạy CPU và thông báo thời gian huấn luyện có thể dài.
 
@@ -83,7 +96,7 @@ Notebook hiện mặc định `RUN_MODE = 'review'`, đọc lại đúng lần c
 
 Muốn huấn luyện mới, đổi `RUN_MODE = 'train'` và đặt `EVALUATE_TEST = False`. Giữ `DROPOUT = 0.5` và `RUN_PARAMETER_STUDY = False` nếu chưa khảo sát cấu hình khác. Mục 12 vẽ Accuracy/Macro-F1, ma trận nhầm lẫn và F1 từng nhãn trong cả hai chế độ; mục 13 xuất bảng rà lỗi validation. Khi khảo sát tắt, có thể bỏ mục 11: mục 12 tự xóa trạng thái khảo sát cũ trước khi tiếp tục. Khi bật khảo sát, mục 12 chỉ chấp nhận kết quả của khảo sát hiện tại đã hoàn tất và đúng dữ liệu/code.
 
-Mỗi lần huấn luyện tạo một thư mục `runs/<RUN_NAME>` trong `models/news_type_phobert_cnn` và `reports/news_type`. Thư mục model lưu checkpoint tốt nhất, tokenizer, cấu hình backbone và cấu hình chạy; thư mục báo cáo lưu lịch sử train/validation và, khi bật đánh giá cuối, kết quả test. Git lưu cấu hình/tokenizer và báo cáo của lần chạy đã chốt `20261024_153932_380173`, kết quả đánh giá `validation_review_20261025_v2` cùng hai file dự đoán của notebook 06. Trọng số model, môi trường và cache được bỏ qua; checkpoint tải riêng từ Drive theo hướng dẫn ở README gốc. Dữ liệu gốc, dữ liệu clean và nhãn không bị ghi đè.
+Mỗi lần huấn luyện tạo một thư mục `runs/<RUN_NAME>` trong `models/news_type_phobert_cnn` và `reports/news_type`. Thư mục model lưu checkpoint tốt nhất, tokenizer, cấu hình backbone và cấu hình chạy; thư mục báo cáo lưu lịch sử train/validation và, khi bật đánh giá cuối, kết quả test. Git lưu cấu hình/tokenizer và báo cáo của lần chạy đã chốt `20261024_153932_380173`, kết quả đánh giá `validation_review_20261025_v2`, đầu ra News Type và metadata đi kèm. Trọng số model, môi trường và cache được bỏ qua; checkpoint tải riêng từ Drive theo hướng dẫn ở README gốc. Dữ liệu gốc, dữ liệu clean và nhãn không bị ghi đè.
 
 Notebook 05 có khảo sát sáu cấu hình learning rate, dropout và weight decay khi `RUN_PARAMETER_STUDY = True`. Mỗi cấu hình bắt đầu từ PhoBERT gốc, cùng split và seed; chọn theo Macro-F1 validation, rồi Accuracy và loss nếu bằng nhau. Khảo sát cần GPU và chỉ giữ checkpoint thắng trong `models/news_type_phobert_cnn/studies/<STUDY_NAME>`. Bảng so sánh, lịch sử từng cấu hình và biểu đồ lưu ở thư mục `studies` tương ứng trong báo cáo.
 
@@ -93,17 +106,17 @@ Sau khi chọn checkpoint, mục **Rà lỗi validation** đối chiếu F1, s�
 
 ### Gán loại tin bằng notebook 06
 
-`06_predict_news_type.ipynb` dùng checkpoint đã chọn để dự đoán phần clean chưa có nhãn, không train hoặc tự đánh giá test. Notebook đối chiếu annotation gốc với log gộp trùng/loại bài, giữ nhãn thủ công theo ID chuẩn và không dùng split CSV thay cho toàn bộ hồ sơ annotation. Với dữ liệu hiện tại: 3.356 bài clean gồm 1.058 nhãn thủ công đã chốt, 2.260 bài chưa từng gán nhãn và 38 bài `review_required` từ đợt annotation trước. Hai bài validation STT 16, 18 đã được chốt không thuộc nhóm 38 bài này.
+`06_predict_news_type.ipynb` dùng checkpoint đã chọn để dự đoán phần clean chưa có nhãn, không train hoặc tự đánh giá test. Notebook đối chiếu annotation gốc với log gộp trùng/loại bài, giữ nhãn thủ công theo ID chuẩn và không dùng split CSV thay cho toàn bộ hồ sơ annotation. Sau đợt rà soát 38 bài và hợp nhất hai alias trùng, 3.354 bài clean gồm 1.090 nhãn thủ công, 2.260 bài dùng dự đoán baseline và 4 bài excluded không nhận dự đoán.
 
 Trước khi nạp model để dự đoán, notebook cần `test_evaluation_config.json` cùng ba báo cáo test thật từ mục 14 của notebook 05. Cell bàn giao mới ở notebook 05 chỉ chạy khi người dùng chủ động bật `EVALUATE_TEST`; việc thêm cell không chạy test. Hồ sơ đối chiếu checksum checkpoint, cấu hình, tokenizer/backbone, dữ liệu, tách từ và báo cáo; nhãn/ID test và các chỉ số phân loại được kiểm tra lại. Không có ngưỡng test để chọn lại model. Thiếu hoặc không khớp thì notebook 06 dừng, không tự chuyển model, train hay tạo kết quả giả.
 
-Đầu ra là `data/processed/news_type_predictions.csv` với đúng bốn cột: `news_id`, `news_type`, `label_source`, `prediction_score`. Mỗi bài clean xuất hiện một lần và giữ nguyên thứ tự. Nhãn thủ công có `label_source=manual`; dự đoán mới có `model`; bài chờ giữ `review_required` và để trống nhãn/điểm, không bị tự gán thay. Điểm model là Softmax chưa hiệu chỉnh; không phải độ tin cậy đã được kiểm chứng. `news_clean.csv` vẫn giữ nguyên tám trường.
+Đầu ra hiện hành là `data/processed/news_type_predictions.csv` với đúng bốn cột: `news_id`, `news_type`, `label_source`, `prediction_score`. Mỗi bài clean xuất hiện một lần và giữ nguyên thứ tự. Nhãn thủ công có `label_source=manual`; dự đoán có `model`; bài bị loại có `excluded` và để trống nhãn/điểm. Điểm model là Softmax chưa hiệu chỉnh, không phải xác suất đúng đã được calibration. `news_clean.csv` vẫn giữ nguyên tám trường.
 
-File đi kèm `news_type_predictions_metadata.json` ghi nguồn model, hồ sơ test, hash đầu vào và hash CSV để các bước sau kiểm tra. Notebook không ghi đè đầu ra đã có; nếu lưu lỗi giữa chừng, chỉ các file vừa tạo trong lần đó được thu hồi. Khi chạy Colab, hai file nằm trong `MyDrive/stock_news_anomaly_project/data/processed`; khi chạy local nằm trong `news_processing/data/processed`. Chỉ có đầu ra thật sau khi chạy suy luận, không tạo sẵn file nhãn. Các bước sentiment sau đó ghép với clean bằng `news_id` và phân biệt nhãn thủ công/model/bài chờ.
+File đi kèm `news_type_predictions_metadata.json` ghi model được chọn, workbook review, hash đầu vào và hash CSV để các bước sau kiểm tra. Notebook không ghi đè đầu ra đã có; nếu lưu lỗi giữa chừng, chỉ các file vừa tạo trong lần đó được thu hồi. Khi chạy Colab, các file nằm trong `MyDrive/stock_news_anomaly_project/data/processed`; khi chạy local nằm trong `news_processing/data/processed`. Các bước sau ghép với clean bằng `news_id`, giữ `label_source`, và loại bốn dòng `excluded` khi cần nhãn News Type.
 
 ### Chạy bằng GPU Colab trong VS Code
 
-Bản Colab đang dùng: [notebook 05](https://colab.research.google.com/drive/15PU9KCDNkAmzxWN0Yb7AxQLK8TQmtbe7) và [notebook 06](https://colab.research.google.com/drive/1rE1DT_gflQsKkqyJUEWXA_pL2qVqLG2o). Đây là hai bước khác nhau; không cần tạo thêm bản sao notebook để chạy lại.
+Bản Colab V1 dùng [notebook 05](https://colab.research.google.com/drive/15PU9KCDNkAmzxWN0Yb7AxQLK8TQmtbe7) và [notebook 06](https://colab.research.google.com/drive/1rE1DT_gflQsKkqyJUEWXA_pL2qVqLG2o). Thí nghiệm V2 được tách riêng thành [notebook 05 V2](https://colab.research.google.com/drive/1D3pOVdwN4dp0qyOIbCAQmpdj4ETxmesu) và [notebook 06 V2](https://colab.research.google.com/drive/10ZZHFt0gvIXtUvGJ5xZyz2GBJFcYz_xn); không notebook nào ghi đè V1.
 
 Hai file nằm chung tại [notebooks/phase_1_news_type trên Drive](https://drive.google.com/drive/folders/1QT5J4RQW9ALAYjERN1W1FdCQ4H__eP4-) trong `MyDrive/stock_news_anomaly_project`, giữ nguyên link mở ở trên. Thư mục tương ứng trên máy và trong ZIP là `news_processing/notebooks/phase_1_news_type/`. Các bản không tự đồng bộ: sửa code trên máy cần cập nhật ZIP và đúng file notebook trên Drive; sau khi chạy Colab, lưu notebook rồi tải bản có output cùng dữ liệu và báo cáo đã xuất về thư mục tương ứng trên máy để nộp khóa luận.
 

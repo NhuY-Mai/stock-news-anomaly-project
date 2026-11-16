@@ -56,11 +56,12 @@ def build_inference_plan(
     duplicate_merge_log: pd.DataFrame,
     label2id: dict[str, int],
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Partition clean articles into confirmed manual, unannotated and review hold.
+    """Partition clean articles by authoritative human-decision state.
 
     Annotation aliases follow the same cleaning lineage used in notebook 04.
-    Unresolved/excluded human decisions and conflicting duplicate labels never
-    become model targets. All input frames remain unchanged.
+    Excluded decisions remain explicitly excluded, while unresolved or
+    conflicting decisions stay under review. Neither state becomes a model
+    target. All input frames remain unchanged.
     """
     _ordered_labels(label2id)
     if clean_news.empty or clean_news.columns.tolist() != NEWS_COLUMNS:
@@ -116,18 +117,22 @@ def build_inference_plan(
     linked = audit.loc[audit["canonical_news_id"].isin(positions)]
     for canonical_id, group in linked.groupby("canonical_news_id", sort=False):
         decisions = refreshed.loc[group.index, ANNOTATION_COLUMNS]
-        unfinished = decisions["annotation_status"].isin({"review_required", "excluded"})
+        pending = decisions["annotation_status"].eq("review_required")
+        excluded = decisions["annotation_status"].eq("excluded")
         partial = decisions["annotation_status"].eq("") & decisions[
             ["news_type", "annotator_note"]
         ].apply(lambda column: column.str.strip().ne("")).any(axis=1)
         confirmed = group.loc[decisions["annotation_status"].eq("labeled"), "training_news_type"]
-        blocked = (
-            unfinished.any() or partial.any() or confirmed.nunique() > 1
+        conflicting = (
+            confirmed.nunique() > 1
             or group["content_issue"].eq("DUPLICATE_LABEL_CONFLICT").any()
+            or (excluded.any() and not confirmed.empty)
         )
         position = positions[canonical_id]
-        if blocked:
+        if pending.any() or partial.any() or conflicting:
             plan.at[position, "label_source"] = "review_required"
+        elif excluded.any():
+            plan.at[position, "label_source"] = "excluded"
         elif not confirmed.empty:
             plan.at[position, "news_type"] = confirmed.iloc[0]
             plan.at[position, "label_source"] = "manual"
@@ -150,24 +155,28 @@ def combine_news_type_predictions(
     predictions: pd.DataFrame,
     label2id: dict[str, int],
 ) -> pd.DataFrame:
-    """Fill every unannotated target once, without replacing manual or hold rows."""
+    """Fill unannotated targets once, preserving every human-decision state."""
     _ordered_labels(label2id)
     if plan.columns.tolist() != OUTPUT_COLUMNS or predictions.columns.tolist() != PREDICTION_COLUMNS:
         raise ValueError("The inference plan or prediction table has an unexpected schema.")
     _validate_ids(plan, "Inference plan")
     _validate_ids(predictions, "Predictions")
-    if not plan["label_source"].isin({"manual", "unlabeled", "review_required"}).all():
+    if not plan["label_source"].isin(
+        {"manual", "unlabeled", "review_required", "excluded"}
+    ).all():
         raise ValueError("The inference plan contains an unknown or already-published label source.")
     manual = plan["label_source"].eq("manual")
     if not plan.loc[manual, "news_type"].isin(label2id).all():
         raise ValueError("Manual labels in the inference plan must be valid finalized labels.")
     if not all(_blank(value) for value in plan["prediction_score"]):
-        raise ValueError("The inference plan must not invent scores for manual or pending labels.")
+        raise ValueError("The inference plan must not invent scores for human-decision rows.")
     if not all(_blank(value) for value in plan.loc[~manual, "news_type"]):
-        raise ValueError("Unannotated and review-held articles must not contain a final label.")
+        raise ValueError("Unannotated, review-held and excluded articles must not contain a final label.")
     target_ids = plan.loc[plan["label_source"].eq("unlabeled"), "news_id"].tolist()
     if set(predictions["news_id"]) != set(target_ids):
-        raise ValueError("Predictions must cover exactly the unannotated articles, never manual or hold rows.")
+        raise ValueError(
+            "Predictions must cover exactly the unannotated articles, never human-decision rows."
+        )
     if not predictions["news_type"].isin(label2id).all():
         raise ValueError("Predictions contain an unknown news_type.")
     if any(isinstance(value, (bool, np.bool_)) for value in predictions["prediction_score"]):

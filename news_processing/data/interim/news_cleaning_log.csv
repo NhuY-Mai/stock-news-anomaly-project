@@ -8,4 +8,4 @@
 07,Remove QNS-only records,53,EXCLUDE
 08,Remove QNS token from mixed-ticker records,8,KEEP_AND_FIX
 09,Exclude unusable article bodies,336,EXCLUDE
-10,Merge duplicate articles,276,MERGE
+10,Merge duplicate articles,278,MERGE

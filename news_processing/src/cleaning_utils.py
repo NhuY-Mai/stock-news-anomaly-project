@@ -20,6 +20,36 @@ WHITESPACE_PATTERN = re.compile(r"\s+")
 
 REVIEWED_CONTENT_RULE = "validation_content_review_v2"
 
+APPROVED_DUPLICATE_REASON = "approved_near_duplicate"
+
+# Near-duplicate decisions confirmed after the review38 audit.  The content
+# hashes bind each decision to the exact cleaned articles that were reviewed;
+# changed text must be reviewed again instead of being merged silently.
+APPROVED_DUPLICATE_MERGES = {
+    "60f1cf38c00324e31d40942201e6da2d4f49b5777d5ddde0a4fcaa6075111bc7": {
+        "kept_news_id": (
+            "046e409c0b5612e305b2e1aace5290aaf13ed378371c17f10cd9e74956f03bbf"
+        ),
+        "removed_content_sha256": (
+            "f780c67c6400c7ab68861b676cac0280c55c0cb5120551505e940c7542b643ee"
+        ),
+        "kept_content_sha256": (
+            "d2a54eb559286a358c16e6277c126b82e15ef55bc887621131d686f1eb711288"
+        ),
+    },
+    "e6007de1b89697f632678093b73de7b0eda0bd34bdbad59081f933ab0f92fd0b": {
+        "kept_news_id": (
+            "d63c3a7bd0b64936825fafa317ed5d38672aca90f27431ce683a8a24b791057a"
+        ),
+        "removed_content_sha256": (
+            "770064b63549324387ce8b6a7774908a1bc149acfda393d4ba1e1753ff28c4e1"
+        ),
+        "kept_content_sha256": (
+            "4bc6c025ea1190300ee610caab6b87834b4d6025eb8eb795787695a90073ce23"
+        ),
+    },
+}
+
 # Exact article bodies reviewed on 25/10/2026. These hashes deliberately keep
 # the corrections out of unrelated articles and refuse unreviewed new versions.
 REVIEWED_CONTENT_CORRECTIONS = {
@@ -748,6 +778,116 @@ def _record_quality(data: pd.DataFrame) -> pd.DataFrame:
     return quality
 
 
+def _apply_approved_duplicate_merges(
+    data: pd.DataFrame,
+    merge_log: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Apply hash-locked human decisions that exact-key matching cannot find."""
+    result = data.copy()
+    updated_log = merge_log.copy()
+
+    removed_ids = set(APPROVED_DUPLICATE_MERGES)
+    kept_ids = {
+        decision["kept_news_id"] for decision in APPROVED_DUPLICATE_MERGES.values()
+    }
+    if removed_ids.intersection(kept_ids):
+        raise ValueError("Approved duplicate merges contain a kept/removed ID conflict")
+
+    if updated_log.empty:
+        next_group = 1
+    else:
+        group_numbers = pd.to_numeric(
+            updated_log["duplicate_group"], errors="raise",
+        )
+        next_group = int(group_numbers.max()) + 1
+
+    approved_log_rows: list[dict[str, object]] = []
+    for removed_news_id, decision in APPROVED_DUPLICATE_MERGES.items():
+        kept_news_id = decision["kept_news_id"]
+        pair_ids = {removed_news_id, kept_news_id}
+        present_mask = result["news_id"].isin(pair_ids)
+        present_ids = set(result.loc[present_mask, "news_id"].astype(str))
+
+        # Synthetic/subset data not containing this reviewed pair is unrelated.
+        if not present_ids:
+            continue
+        # A previously cleaned frame legitimately contains only the approved
+        # representative.  Validate it, then keep the operation idempotent.
+        if present_ids == {kept_news_id}:
+            kept_content = result.loc[present_mask, "content"].iloc[0]
+            if not isinstance(kept_content, str) or not kept_content:
+                raise ValueError("Approved duplicate kept article has empty content")
+            kept_hash = hashlib.sha256(kept_content.encode("utf-8")).hexdigest()
+            if kept_hash != decision["kept_content_sha256"]:
+                raise ValueError(
+                    f"Approved duplicate kept content changed for {kept_news_id}"
+                )
+            continue
+        if present_ids != pair_ids:
+            raise ValueError(
+                "Approved duplicate pair is incomplete: "
+                f"expected {sorted(pair_ids)}, received {sorted(present_ids)}"
+            )
+
+        pair = result.loc[present_mask]
+        if len(pair) != 2 or pair["news_id"].duplicated().any():
+            raise ValueError(f"Approved duplicate pair has invalid IDs: {sorted(pair_ids)}")
+
+        kept_row = pair.loc[pair["news_id"].eq(kept_news_id)].iloc[0].copy()
+        removed_row = pair.loc[pair["news_id"].eq(removed_news_id)].iloc[0]
+        for row, expected_hash, role in (
+            (kept_row, decision["kept_content_sha256"], "kept"),
+            (removed_row, decision["removed_content_sha256"], "removed"),
+        ):
+            content = row["content"]
+            if not isinstance(content, str) or not content:
+                raise ValueError(f"Approved duplicate {role} article has empty content")
+            observed_hash = hashlib.sha256(content.encode("utf-8")).hexdigest()
+            if observed_hash != expected_hash:
+                raise ValueError(
+                    f"Approved duplicate {role} content changed for {row['news_id']}"
+                )
+
+        if len(kept_row["content"]) < len(removed_row["content"]):
+            raise ValueError(
+                f"Approved representative {kept_news_id} is shorter than {removed_news_id}"
+            )
+
+        ticker_tokens: set[str] = set()
+        for ticker_value in pair["tickers"]:
+            ticker_tokens.update(split_tickers(ticker_value))
+        kept_row["tickers"] = ", ".join(sorted(ticker_tokens))
+        for column, delimiter in (
+            ("dataset_origin", "|"),
+            ("source_news_ids", "|"),
+            ("source_content_hashes", "|"),
+        ):
+            if column in pair.columns:
+                kept_row[column] = "|".join(_split_delimited(pair[column], delimiter))
+
+        kept_index = pair.index[pair["news_id"].eq(kept_news_id)][0]
+        for column in result.columns:
+            result.at[kept_index, column] = kept_row[column]
+        result = result.loc[~result["news_id"].eq(removed_news_id)].copy()
+
+        approved_log_rows.append({
+            "duplicate_group": next_group,
+            "duplicate_reasons": APPROVED_DUPLICATE_REASON,
+            "kept_news_id": kept_news_id,
+            "merged_news_ids": "|".join(sorted(pair_ids)),
+            "rows_in_group": 2,
+            "rows_removed": 1,
+        })
+        next_group += 1
+
+    if approved_log_rows:
+        updated_log = pd.concat([
+            updated_log,
+            pd.DataFrame(approved_log_rows, columns=updated_log.columns),
+        ], ignore_index=True)
+    return result.reset_index(drop=True), updated_log
+
+
 def consolidate_url_duplicates(data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Merge rows with the same canonical URL while preserving ticker and lineage unions."""
     working = data.copy()
@@ -900,4 +1040,4 @@ def consolidate_article_duplicates(data: pd.DataFrame) -> tuple[pd.DataFrame, pd
         "duplicate_group", "duplicate_reasons", "kept_news_id",
         "merged_news_ids", "rows_in_group", "rows_removed",
     ])
-    return result, merge_log
+    return _apply_approved_duplicate_merges(result, merge_log)
