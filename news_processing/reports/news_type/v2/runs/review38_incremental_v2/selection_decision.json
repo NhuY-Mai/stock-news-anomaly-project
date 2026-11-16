@@ -1,0 +1,23 @@
+{
+  "decision": "KEEP_V1_PARENT",
+  "selected_run": "20261024_153932_380173",
+  "source_run": "20261024_153932_380173",
+  "candidate_run": "review38_incremental_v2",
+  "source_validation_metrics": {
+    "loss": 0.5226701498031616,
+    "accuracy": 0.9308176100628931,
+    "macro_f1": 0.9106696346975617,
+    "weighted_f1": 0.9296698038803302,
+    "balanced_accuracy": 0.9062001943634598
+  },
+  "candidate_validation_metrics": {
+    "loss": 0.3934953510761261,
+    "accuracy": 0.89937106918239,
+    "macro_f1": 0.8799886098243839,
+    "weighted_f1": 0.9015573905907995,
+    "balanced_accuracy": 0.8829354281395096
+  },
+  "macro_f1_delta": -0.03068102487317781,
+  "min_delta": 0.0001,
+  "test_evaluated": false
+}

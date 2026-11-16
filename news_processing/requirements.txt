@@ -1,6 +1,7 @@
 # Data preparation and notebook verification.
 numpy==2.2.6
 pandas==2.3.0
+openpyxl==3.1.5
 scipy==1.16.0
 scikit-learn==1.7.0
 threadpoolctl==3.6.0

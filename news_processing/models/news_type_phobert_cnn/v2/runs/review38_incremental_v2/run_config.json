@@ -1,0 +1,127 @@
+{
+  "run_name": "review38_incremental_v2",
+  "run_version": "news_type_v2_review38_incremental",
+  "parent_run": "20261024_153932_380173",
+  "parent_run_alias": "news_type_v1_baseline",
+  "parent_checkpoint_sha256": "f32f9d3b72ded3124bf43075ffc9d986b37d2d8cf830a3dc0b79e6a91be785aa",
+  "initialization": "warm_start_model_weights_new_optimizer",
+  "model_name": "vinai/phobert-base-v2",
+  "model_revision": null,
+  "max_length": 256,
+  "head_ratio": 0.75,
+  "word_segmenter": "VnCoreNLP wseg 1.2",
+  "pooling_special_tokens": "include; padding excluded",
+  "kernel_sizes": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "num_filters": 128,
+  "global_projection_size": 128,
+  "dropout": 0.5,
+  "num_classes": 7,
+  "label_mapping": {
+    "label_policy_version": "company_awards_listing_v2",
+    "label2id": {
+      "governance_capital": 0,
+      "financial_results": 1,
+      "business_operations": 2,
+      "legal_compliance": 3,
+      "industry": 4,
+      "stock_market": 5,
+      "mention_only": 6
+    },
+    "id2label": {
+      "0": "governance_capital",
+      "1": "financial_results",
+      "2": "business_operations",
+      "3": "legal_compliance",
+      "4": "industry",
+      "5": "stock_market",
+      "6": "mention_only"
+    },
+    "merged_labels": {
+      "macro": "industry"
+    },
+    "display_names": {
+      "governance_capital": "Quản trị, sở hữu và hành động vốn",
+      "financial_results": "Kết quả kinh doanh và tài chính",
+      "business_operations": "Hoạt động kinh doanh và đầu tư",
+      "legal_compliance": "Pháp lý và tuân thủ doanh nghiệp",
+      "industry": "Ngành, chuỗi giá trị và kinh tế vĩ mô",
+      "stock_market": "Thị trường chứng khoán và định giá",
+      "mention_only": "Tổng hợp hoặc ít liên quan"
+    }
+  },
+  "seed": 42,
+  "batch_size": 8,
+  "backbone_lr": 2e-05,
+  "head_lr": 0.001,
+  "weight_decay": 0.01,
+  "warmup_ratio": 0.1,
+  "max_epochs": 8,
+  "patience": 2,
+  "min_delta": 0.0001,
+  "max_grad_norm": 1.0,
+  "precision": "float32",
+  "device": "cuda",
+  "train_rows": 766,
+  "review38_added_rows": 26,
+  "best_epoch": 1,
+  "best_validation_macro_f1": 0.8799886098243839,
+  "source_validation_metrics": {
+    "loss": 0.5226701498031616,
+    "accuracy": 0.9308176100628931,
+    "macro_f1": 0.9106696346975617,
+    "weighted_f1": 0.9296698038803302,
+    "balanced_accuracy": 0.9062001943634598
+  },
+  "candidate_validation_metrics": {
+    "loss": 0.3934953510761261,
+    "accuracy": 0.89937106918239,
+    "macro_f1": 0.8799886098243839,
+    "weighted_f1": 0.9015573905907995,
+    "balanced_accuracy": 0.8829354281395096
+  },
+  "validation_macro_f1_delta": -0.03068102487317781,
+  "promotion_rule": "candidate_macro_f1 > source_macro_f1 + min_delta",
+  "selection_decision": "KEEP_V1_PARENT",
+  "test_evaluated": false,
+  "class_weights_by_id": [
+    0.9684000015258789,
+    0.8482999801635742,
+    0.5090000033378601,
+    2.9574999809265137,
+    1.6579999923706055,
+    0.7547000050544739,
+    1.7939000129699707
+  ],
+  "input_sha256": {
+    "data/splits/news_type/train_v2.csv": "a6dc1caf521f29b28b41fc9aeb71ada84d0c02d17bd4c32efd9f7cc52cf6571f",
+    "data/splits/news_type/validation.csv": "9be546e6cc1bd5b86e35b9fb70e62fdacfc7d2589e04af9001a2b798862eff45",
+    "data/splits/news_type/test.csv": "1e40f86ac0e85772ccbea65f0ee815eb78277ec91e0834de91d0c66aa4270bf0",
+    "models/news_type_phobert_cnn/label_mapping.json": "cbf2d86bff834bd7762f6a9f98a4038cb1a26b722f464cc48d656a3a6bddb3da"
+  },
+  "source_input_sha256": {
+    "data/splits/news_type/train.csv": "1121c3d79dba52e32b361f91d3a38713817e2579ad4d3c48bf45c458b92e8b23",
+    "data/splits/news_type/validation.csv": "9be546e6cc1bd5b86e35b9fb70e62fdacfc7d2589e04af9001a2b798862eff45",
+    "data/splits/news_type/test.csv": "1e40f86ac0e85772ccbea65f0ee815eb78277ec91e0834de91d0c66aa4270bf0",
+    "models/news_type_phobert_cnn/label_mapping.json": "cbf2d86bff834bd7762f6a9f98a4038cb1a26b722f464cc48d656a3a6bddb3da"
+  },
+  "review38_resolution_sha256": "67329145acb296f65c1caa9be5bc6bf9c0f5da9f607d3fe22a68131b17e49616",
+  "segmenter_sha256": {
+    "VnCoreNLP-1.2.jar": "9e2811cdbc2ddfc71d04be5dc36e185c88dcd1ad4d5d69e4ff2e1369dccf7793",
+    "models/wordsegmenter/vi-vocab": "0a47c5b55bbce163029d37730a67b9479740388695c29c106c112b815613eaa5",
+    "models/wordsegmenter/wordsegmenter.rdr": "9e62f96bd93e37a24f364238e8d8ae986fa5dad6dbc9f4eae622ab3651b7fa06"
+  },
+  "candidate_checkpoint_sha256": "682795c6999ae10d5c571f8a81a930ff38a097a98c1fd2bad5afab3d1423b4cc",
+  "versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.1",
+    "py-vncorenlp": "0.1.4",
+    "numpy": "2.4.6",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.7.2"
+  }
+}
