@@ -1,7 +1,7 @@
 # News Processing
 
 Báo cáo News Type chính thức cho cả V1 và V2 nằm tại
-[`reports/news_type/README.md`](reports/news_type/README.md). Các số liệu News Type
+[`reports/news_type/report_final_news_type.md`](reports/news_type/report_final_news_type.md). Các số liệu News Type
 trong file đó là nguồn tham chiếu hiện hành.
 
 ## Quy trình
