@@ -1,6 +1,6 @@
 # Báo cáo News Type — Phase 1
 
-**Trạng thái:** hoàn tất, đã nghiệm thu ngày 16/11/2026 (608/608 test pass, toàn bộ hash khớp).
+**Trạng thái:** hoàn tất, cập nhật file final 11 cột và nghiệm thu ngày 17/11/2026 (617/617 test pass, toàn bộ hash khớp).
 **Phạm vi:** gán một nhãn `news_type` cho mỗi bài tin liên quan 13 mã HOSE:
 `ANV, DBC, DGW, DHG, FRT, IMP, MSN, MWG, PNJ, SAB, SBT, VHC, VNM`.
 
@@ -48,7 +48,7 @@ flowchart TD
 ```
 
 ### Bước 1 — Dữ liệu thô (`notebooks/01_EDA_data.ipynb`)
-- Đầu vào: `data/raw/news_raw.csv`, **4.491 dòng**, 22 cột, gồm 33 nguồn.
+- Đầu vào: `data/raw/news_raw.csv`, **4.491 dòng**, 22 cột, gồm 37 nguồn (còn 33 nguồn sau bước clean).
 - Bốn nguồn lớn nhất (CafeF, API:CafeF DN, VietnamNet, BNews) chiếm 76,9% dữ liệu sau clean.
 - Log cấu trúc và lỗi ghi vào `data/interim/`.
 
@@ -141,7 +141,7 @@ flowchart TD
 - Test V2 chỉ chạy sau đó để mô tả (xem mục 4). Không dùng kết quả này để đảo quyết định.
 
 ### Bước 11 — Đầu ra canonical
-- `news_type_predictions.csv` gồm 4 cột `news_id, news_type, label_source, prediction_score`. Mỗi bài clean có đúng một dòng, cùng thứ tự với `news_clean.csv`.
+- `news_type_predictions.csv` là file final 11 cột `news_id, source, url, title, summary, content, published_date, tickers, news_type, label_source, prediction_score`. Tám cột bài viết giữ nguyên từ `news_clean.csv`; mỗi bài clean có đúng một dòng và cùng thứ tự.
 
 | `label_source` | Số dòng | Nhãn | Score |
 |---|---:|---|---|
@@ -177,7 +177,7 @@ F1 trên test theo lớp (support):
 
 ## 5. Dùng output ở bước sau
 
-1. Ghép với `news_clean.csv` theo `news_id`.
+1. Dùng trực tiếp file final; không cần ghép lại với `news_clean.csv`.
 2. Khi cần nhãn, lọc bỏ 4 dòng `excluded`.
 3. Giữ cột `label_source` để phân biệt nhãn người với nhãn model.
 4. Phân bố nhãn của phần `model` khác phần `manual`, vì đợt chọn mẫu đã kéo hầu hết tin ngành/vĩ mô vào nhóm gán tay. Ví dụ, chỉ 8/2.260 bài model được gán `industry`. Đây là đặc điểm của phần dữ liệu còn lại, không phải lỗi model.
@@ -203,7 +203,7 @@ F1 trên test theo lớp (support):
 | Quyết định Review38 | `data/annotation/news_type/review38/review38_resolution.csv` | `67329145…9616` |
 | Checkpoint V1 | `models/news_type_phobert_cnn/runs/20261024_153932_380173/best_model.pt` | `f32f9d3b…85aa` |
 | Checkpoint V2 (Drive, 546 MB) | [best_model.pt](https://drive.google.com/file/d/1yAYP5ohpZMvgDGxiS9AMURXGt8kVlQy4/view) | `682795c6…b4cc` |
-| Output canonical | `data/processed/news_type_predictions.csv` | `248a5945…2301` |
+| Output canonical | `data/processed/news_type_predictions.csv` | `15d73d1c…21d8` |
 
 Hash đầy đủ nằm trong `scripts/build_train_v2.py`, `src/finalize_news_type_review.py` và `news_type_predictions_metadata.json`.
 `run_config.json` của V1 ghi hash validation cũ (`9d9612…`), vì đó là dữ liệu lúc train. `evaluations/validation_review_20261025_v2/evaluation_config.json` nối hash cũ với hash hiện hành.
@@ -214,7 +214,7 @@ Bằng chứng theo lần chạy:
 - `v2/runs/review38_incremental_v2/`: V2, `selection_decision.json`, `v1_v2_comparison.csv`;
 - `annotation_selection.csv`, `annotation_coverage.csv`, `source_quotas.csv`, `split_distribution.csv`: chọn mẫu và phân bố.
 
-**Tái lập:** `python -m pytest -q` (608 test) và `python scripts/build_train_v2.py --check`. Không `Run all` notebook 05/06 nếu không chủ động tạo run mới. Mọi lần train mới phải ghi sang run/folder mới.
+**Tái lập:** `python -m pytest -q` (617 test) và `python scripts/build_train_v2.py --check`. Không `Run all` notebook 05/06 nếu không chủ động tạo run mới. Mọi lần train mới phải ghi sang run/folder mới.
 
 ## 8. Tài liệu tham khảo
 

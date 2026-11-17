@@ -10,6 +10,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
+from src.annotation_utils import NEWS_COLUMNS
 from src.finalize_news_type_review import (
     EXPECTED_COUNTS,
     EXPECTED_RESOLUTION_SHA256,
@@ -18,6 +19,7 @@ from src.finalize_news_type_review import (
     finalize_news_type_review,
 )
 from src.cleaning_utils import APPROVED_DUPLICATE_REASON
+from src.news_type_inference import FINAL_OUTPUT_COLUMNS, OUTPUT_COLUMNS
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
@@ -54,6 +56,7 @@ def test_review38_finalizer_publishes_manual_model_and_explicit_excluded_rows(tm
     output_path = project / "data/processed/news_type_predictions.csv"
     metadata_path = project / "data/processed/news_type_predictions_metadata.json"
     master_path = project / "data/annotation/news_type/news_manually_labeled.csv"
+    clean_path = project / "data/processed/news_clean.csv"
     resolution_path = project / "data/annotation/news_type/review38/review38_resolution.csv"
     resolution_hash_before = _sha256(resolution_path)
     assert resolution_hash_before == EXPECTED_RESOLUTION_SHA256
@@ -68,11 +71,14 @@ def test_review38_finalizer_publishes_manual_model_and_explicit_excluded_rows(tm
     output = pd.read_csv(output_path, dtype=str, keep_default_na=False)
     metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
     master = pd.read_csv(master_path, dtype=str, keep_default_na=False)
+    clean = pd.read_csv(clean_path, dtype=str, keep_default_na=False)
     resolution = pd.read_csv(resolution_path, dtype=str, keep_default_na=False)
 
     assert result["counts"] == EXPECTED_COUNTS
     assert len(output) == 3354
+    assert output.columns.tolist() == FINAL_OUTPUT_COLUMNS
     assert output["news_id"].is_unique
+    pd.testing.assert_frame_equal(output[NEWS_COLUMNS], clean[NEWS_COLUMNS])
     assert output["label_source"].value_counts().to_dict() == {
         "model": 2260,
         "manual": 1090,
@@ -129,10 +135,11 @@ def test_review38_finalizer_publishes_manual_model_and_explicit_excluded_rows(tm
     master_by_id = master.set_index("news_id")
     assert master_by_id.loc[labeled_ids, "annotation_status"].eq("labeled").all()
     assert master_by_id.loc[excluded_ids, "annotation_status"].eq("excluded").all()
-    assert metadata["schema_version"] == "news_type_predictions_v2"
+    assert metadata["schema_version"] == "news_type_predictions_v3"
     assert metadata["source_run"] == "20261024_153932_380173"
     assert metadata["selected_model_unchanged"] is True
     assert metadata["label_source_counts"] == EXPECTED_COUNTS
+    assert metadata["output_columns"] == FINAL_OUTPUT_COLUMNS
     assert metadata["output_csv_sha256"] == _sha256(output_path)
     assert metadata["review_batch"]["source_workbook_sha256"] == EXPECTED_WORKBOOK_SHA256
     assert metadata["review_batch"]["manual_labels"] == 34
@@ -158,6 +165,31 @@ def test_review38_finalizer_publishes_manual_model_and_explicit_excluded_rows(tm
     assert second_result == result
     assert {path: _sha256(path) for path in tracked} == first_hashes
     assert _sha256(resolution_path) == resolution_hash_before
+
+
+def test_review38_finalizer_migrates_compact_v2_output_to_joined_v3(tmp_path):
+    project = _copy_project_inputs(tmp_path)
+    output_path = project / "data/processed/news_type_predictions.csv"
+    metadata_path = project / "data/processed/news_type_predictions_metadata.json"
+    output = pd.read_csv(output_path, dtype=str, keep_default_na=False)
+    compact = output[OUTPUT_COLUMNS]
+    compact.to_csv(output_path, index=False, encoding="utf-8-sig", lineterminator="\n")
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8-sig"))
+    metadata["schema_version"] = "news_type_predictions_v2"
+    metadata["output_columns"] = OUTPUT_COLUMNS
+    metadata["output_csv_sha256"] = _sha256(output_path)
+    metadata_path.write_text(
+        json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8",
+    )
+
+    finalize_news_type_review(project)
+
+    migrated = pd.read_csv(output_path, dtype=str, keep_default_na=False)
+    migrated_metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    assert migrated.columns.tolist() == FINAL_OUTPUT_COLUMNS
+    assert migrated_metadata["schema_version"] == "news_type_predictions_v3"
+    assert migrated_metadata["output_columns"] == FINAL_OUTPUT_COLUMNS
+    assert migrated_metadata["output_csv_sha256"] == _sha256(output_path)
 
 
 def test_review38_finalizer_rejects_a_tampered_source_before_writing(tmp_path):

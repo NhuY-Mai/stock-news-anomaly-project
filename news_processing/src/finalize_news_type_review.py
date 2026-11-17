@@ -19,10 +19,12 @@ import pandas as pd
 
 from .annotation_utils import ANNOTATION_COLUMNS, NEWS_COLUMNS
 from .news_type_inference import (
+    FINAL_OUTPUT_COLUMNS,
     OUTPUT_COLUMNS,
     PREDICTION_COLUMNS,
     build_inference_plan,
     combine_news_type_predictions,
+    join_news_type_output,
 )
 
 
@@ -356,8 +358,10 @@ def _baseline_model_rows(
     if recorded_output_hash != _sha256(output_path):
         raise ValueError("Canonical predictions do not match their current metadata hash")
     output = pd.read_csv(output_path, dtype=str, keep_default_na=False)
-    if output.columns.tolist() != OUTPUT_COLUMNS:
+    if output.columns.tolist() not in (OUTPUT_COLUMNS, FINAL_OUTPUT_COLUMNS):
         raise ValueError("Canonical prediction table has an unexpected schema")
+    if metadata.get("output_columns") != output.columns.tolist():
+        raise ValueError("Canonical prediction columns do not match their metadata")
     model_rows = output.loc[
         output["label_source"].eq("model"), PREDICTION_COLUMNS,
     ].copy()
@@ -431,28 +435,31 @@ def finalize_news_type_review(
     if set(inference_inputs["news_id"]) != set(baseline_rows["news_id"]):
         raise ValueError("Unchanged baseline model rows do not exactly cover current model targets")
 
-    final_output = combine_news_type_predictions(plan, baseline_rows, label2id)
-    final_counts = final_output["label_source"].value_counts().to_dict()
+    assignments = combine_news_type_predictions(plan, baseline_rows, label2id)
+    final_counts = assignments["label_source"].value_counts().to_dict()
     if final_counts != EXPECTED_COUNTS:
         raise ValueError(f"Unexpected final label-source counts: {final_counts}")
-    if len(final_output) != len(clean) or final_output["news_id"].tolist() != clean["news_id"].tolist():
+    if len(assignments) != len(clean) or assignments["news_id"].tolist() != clean["news_id"].tolist():
         raise ValueError("Canonical output must preserve every clean news_id exactly once and in order")
 
     # combine_news_type_predictions validates scores numerically. Restore the
     # original strings afterwards so accepted baseline row values never drift.
     source_by_id = baseline_rows.set_index("news_id", drop=False)
-    model_mask = final_output["label_source"].eq("model")
-    model_ids = final_output.loc[model_mask, "news_id"].tolist()
-    final_output.loc[model_mask, "news_type"] = source_by_id.loc[model_ids, "news_type"].to_numpy()
-    final_output.loc[model_mask, "prediction_score"] = source_by_id.loc[
+    model_mask = assignments["label_source"].eq("model")
+    model_ids = assignments.loc[model_mask, "news_id"].tolist()
+    assignments.loc[model_mask, "news_type"] = source_by_id.loc[model_ids, "news_type"].to_numpy()
+    assignments.loc[model_mask, "prediction_score"] = source_by_id.loc[
         model_ids, "prediction_score"
     ].to_numpy()
-    excluded_mask = final_output["label_source"].eq("excluded")
-    if not final_output.loc[excluded_mask, ["news_type", "prediction_score"]].eq("").all().all():
+    excluded_mask = assignments["label_source"].eq("excluded")
+    if not assignments.loc[excluded_mask, ["news_type", "prediction_score"]].eq("").all().all():
         raise ValueError("Excluded rows must have blank News Type and prediction score")
-    manual_mask = final_output["label_source"].eq("manual")
-    if not final_output.loc[manual_mask, "prediction_score"].eq("").all():
+    manual_mask = assignments["label_source"].eq("manual")
+    if not assignments.loc[manual_mask, "prediction_score"].eq("").all():
         raise ValueError("Manual reference labels must not contain model scores")
+    final_output = join_news_type_output(clean, assignments)
+    if not final_output[NEWS_COLUMNS].equals(clean[NEWS_COLUMNS]):
+        raise AssertionError("Publishing the joined output changed clean article fields")
 
     workbook_bytes = paths["workbook"].read_bytes()
     # Keep the reviewed 16-column artifact byte-identical.  It is an input to
@@ -472,7 +479,7 @@ def finalize_news_type_review(
         relative(paths["mapping"]): _sha256(paths["mapping"]),
     }
     metadata = {
-        "schema_version": "news_type_predictions_v2",
+        "schema_version": "news_type_predictions_v3",
         "published_date": REVIEW_APPLIED_DATE,
         "source_run": BASELINE_RUN,
         "selected_model_unchanged": True,

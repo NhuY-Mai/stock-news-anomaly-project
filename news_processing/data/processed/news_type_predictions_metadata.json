@@ -1,5 +1,5 @@
 {
-  "schema_version": "news_type_predictions_v2",
+  "schema_version": "news_type_predictions_v3",
   "published_date": "2026-11-05",
   "source_run": "20261024_153932_380173",
   "selected_model_unchanged": true,
@@ -82,11 +82,18 @@
   "output_rows": 3354,
   "output_columns": [
     "news_id",
+    "source",
+    "url",
+    "title",
+    "summary",
+    "content",
+    "published_date",
+    "tickers",
     "news_type",
     "label_source",
     "prediction_score"
   ],
-  "output_csv_sha256": "248a594557e1029ff6519d636026f298b9eb0cc76bd36ce91195ea8fe0e12301",
+  "output_csv_sha256": "15d73d1cf809d6c7cd2708584814e526006648fa68b07b316f0dc449995021d8",
   "excluded_news_ids": [
     "8d61612a268dec8953e44caf6c90b4dc2297df5828ac675e89b0c5e72616ba93",
     "253c0a7e04d2e6986efdac63efb7bc32bad3f6797041647ed583974098d9534f",
