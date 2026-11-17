@@ -16,11 +16,13 @@ from torch import nn
 
 from src.annotation_utils import ANNOTATION_COLUMNS, NEWS_COLUMNS
 from src.news_type_inference import (
+    FINAL_OUTPUT_COLUMNS,
     OUTPUT_COLUMNS,
     PREDICTION_COLUMNS,
     UnlabeledNewsDataset,
     build_inference_plan,
     combine_news_type_predictions,
+    join_news_type_output,
     predict_news_types,
 )
 from src.phobert_cnn import PhoBertCNN, encode_news_texts
@@ -294,6 +296,64 @@ def test_merge_preserves_excluded_rows_and_rejects_predictions_for_them(inputs):
         combine_news_type_predictions(plan, overwrite, LABELS)
 
 
+def test_join_news_type_output_preserves_every_clean_field_and_assignment(inputs):
+    plan, _, _ = build_inference_plan(**inputs)
+    predictions = pd.DataFrame([{
+        "news_id": "target", "news_type": "industry", "prediction_score": 0.8,
+    }], columns=PREDICTION_COLUMNS)
+    assignments = combine_news_type_predictions(plan, predictions, LABELS)
+    clean_before = inputs["clean_news"].copy(deep=True)
+    assignments_before = assignments.copy(deep=True)
+
+    result = join_news_type_output(inputs["clean_news"], assignments)
+
+    assert result.columns.tolist() == FINAL_OUTPUT_COLUMNS
+    pd.testing.assert_frame_equal(result[NEWS_COLUMNS], clean_before.reset_index(drop=True))
+    pd.testing.assert_frame_equal(
+        result[OUTPUT_COLUMNS], assignments_before.reset_index(drop=True),
+    )
+    pd.testing.assert_frame_equal(inputs["clean_news"], clean_before)
+    pd.testing.assert_frame_equal(assignments, assignments_before)
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "bad_clean_schema", "bad_assignment_schema", "missing_id", "extra_id",
+        "wrong_order", "duplicate_clean_id", "duplicate_assignment_id",
+    ],
+)
+def test_join_news_type_output_rejects_noncanonical_inputs(inputs, case):
+    clean = inputs["clean_news"].copy(deep=True)
+    plan, _, _ = build_inference_plan(**inputs)
+    predictions = pd.DataFrame([{
+        "news_id": "target", "news_type": "industry", "prediction_score": 0.8,
+    }], columns=PREDICTION_COLUMNS)
+    assignments = combine_news_type_predictions(plan, predictions, LABELS)
+    if case == "bad_clean_schema":
+        clean = clean.drop(columns="summary")
+    elif case == "bad_assignment_schema":
+        assignments = assignments.drop(columns="prediction_score")
+    elif case == "missing_id":
+        assignments = assignments.iloc[:-1].copy()
+    elif case == "extra_id":
+        assignments = pd.concat([
+            assignments,
+            pd.DataFrame([{
+                "news_id": "extra", "news_type": "industry",
+                "label_source": "model", "prediction_score": 0.9,
+            }], columns=OUTPUT_COLUMNS),
+        ], ignore_index=True)
+    elif case == "wrong_order":
+        assignments = assignments.iloc[::-1].reset_index(drop=True)
+    elif case == "duplicate_clean_id":
+        clean.loc[1, "news_id"] = clean.loc[0, "news_id"]
+    else:
+        assignments.loc[1, "news_id"] = assignments.loc[0, "news_id"]
+    with pytest.raises(ValueError):
+        join_news_type_output(clean, assignments)
+
+
 def encodings(ids):
     return [
         {"news_id": news_id, "input_ids": [index + 2, 1, 1], "attention_mask": [1, 0, 0]}
@@ -564,7 +624,10 @@ def test_notebook06_cold_run_keeps_manual_and_hold_rows_and_exports_real_tiny_in
     namespace = _execute_notebook06(fixture)
     output = pd.read_csv(namespace["PREDICTION_PATH"], dtype=str, keep_default_na=False)
     metadata = json.loads(namespace["PREDICTION_METADATA_PATH"].read_text(encoding="utf-8"))
-    assert output.columns.tolist() == OUTPUT_COLUMNS
+    assert output.columns.tolist() == FINAL_OUTPUT_COLUMNS
+    pd.testing.assert_frame_equal(
+        output[NEWS_COLUMNS], namespace["clean_news"][NEWS_COLUMNS],
+    )
     assert output["news_id"].tolist() == ["manual", "target", "hold"]
     assert output["label_source"].tolist() == ["manual", "model", "review_required"]
     assert output.loc[0, "news_type"] == "financial_results"
@@ -572,6 +635,8 @@ def test_notebook06_cold_run_keeps_manual_and_hold_rows_and_exports_real_tiny_in
     assert output.loc[2, "news_type"] == ""
     assert 0 <= float(output.loc[1, "prediction_score"]) <= 1
     assert metadata["output_rows"] == 3 and metadata["human_annotations_modified"] is False
+    assert metadata["schema_version"] == "news_type_predictions_v3"
+    assert metadata["output_columns"] == FINAL_OUTPUT_COLUMNS
     assert metadata["output_csv_sha256"] == hashlib.sha256(namespace["PREDICTION_PATH"].read_bytes()).hexdigest()
     assert fixture.events == ["test_gate", "encode", "test_gate"]
     for path, payload in fixture.protected.items():

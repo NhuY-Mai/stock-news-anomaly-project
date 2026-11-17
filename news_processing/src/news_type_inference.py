@@ -22,6 +22,7 @@ from .model_data_utils import build_phobert_input_text
 
 PREDICTION_COLUMNS = ["news_id", "news_type", "prediction_score"]
 OUTPUT_COLUMNS = ["news_id", "news_type", "label_source", "prediction_score"]
+FINAL_OUTPUT_COLUMNS = NEWS_COLUMNS + ["news_type", "label_source", "prediction_score"]
 _INTEGER_DTYPES = {torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64}
 
 
@@ -192,6 +193,37 @@ def combine_news_type_predictions(
         result.loc[targets, "news_type"] = by_id.loc[target_ids, "news_type"].to_numpy()
         result.loc[targets, "prediction_score"] = by_id.loc[target_ids, "prediction_score"].to_numpy()
         result.loc[targets, "label_source"] = "model"
+    return result
+
+
+def join_news_type_output(
+    clean_news: pd.DataFrame,
+    assignments: pd.DataFrame,
+) -> pd.DataFrame:
+    """Publish article fields and finalized News Type assignments in one table."""
+    if clean_news.columns.tolist() != NEWS_COLUMNS:
+        raise ValueError("Clean news must contain the eight expected fields in their saved order.")
+    if assignments.columns.tolist() != OUTPUT_COLUMNS:
+        raise ValueError("News Type assignments have an unexpected schema.")
+    _validate_ids(clean_news, "Clean news")
+    _validate_ids(assignments, "News Type assignments")
+    clean_ids = clean_news["news_id"].tolist()
+    assignment_ids = assignments["news_id"].tolist()
+    if len(clean_ids) != len(assignment_ids) or set(clean_ids) != set(assignment_ids):
+        raise ValueError("Clean news and News Type assignments must contain exactly the same news_id values.")
+    if clean_ids != assignment_ids:
+        raise ValueError("News Type assignments must follow the saved clean-news order.")
+    result = pd.concat(
+        [
+            clean_news.reset_index(drop=True).copy(deep=True),
+            assignments[["news_type", "label_source", "prediction_score"]]
+            .reset_index(drop=True)
+            .copy(deep=True),
+        ],
+        axis=1,
+    )
+    if result.columns.tolist() != FINAL_OUTPUT_COLUMNS:
+        raise AssertionError("The joined News Type output does not match the canonical schema.")
     return result
 
 
