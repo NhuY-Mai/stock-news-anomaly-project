@@ -1,0 +1,21 @@
+{
+  "main_articles": 3633,
+  "thao_input_rows": 1372,
+  "thao_valid_rows": 1272,
+  "thao_valid_unique_urls": 1218,
+  "thao_internal_duplicate_rows": 54,
+  "thao_articles_added": 858,
+  "existing_articles_enriched": 360,
+  "rejected": {
+    "outside_date_range": 19,
+    "not_success": 81
+  },
+  "output_articles": 4491,
+  "output_unique_urls": 4491,
+  "output_unique_news_ids": 4491,
+  "output_unique_content_hashes": 4491,
+  "date_range": [
+    "2020-01-01",
+    "2026-09-25"
+  ]
+}

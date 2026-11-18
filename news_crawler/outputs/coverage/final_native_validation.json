@@ -1,0 +1,34 @@
+{
+  "state": "complete",
+  "scope": "all_publicly_discoverable_and_accessible_candidates",
+  "articles": 3633,
+  "ticker_links": 3710,
+  "unique_urls": 3633,
+  "unique_content_hashes": 3633,
+  "missing_required": 0,
+  "orphan_links": 0,
+  "tickers": [
+    "ANV",
+    "DBC",
+    "DGW",
+    "DHG",
+    "FRT",
+    "IMP",
+    "MSN",
+    "MWG",
+    "PNJ",
+    "QNS",
+    "SAB",
+    "SBT",
+    "VHC",
+    "VNM"
+  ],
+  "date_min": "2020-01-01",
+  "date_max": "2026-09-25",
+  "retry_batch": {
+    "fetch_error": 73,
+    "rejected": 146,
+    "ok": 3
+  },
+  "completed_at": "2026-09-28T18:50:33.326684+07:00"
+}

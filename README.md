@@ -4,6 +4,8 @@ Dự án khóa luận xử lý tin tức tài chính, phân loại loại tin b�
 
 Mã nguồn, dữ liệu, notebook có output và báo cáo nằm trong [news_processing](news_processing/). Xem [hướng dẫn chạy và cấu trúc dự án](news_processing/README.md).
 
+Phần thu thập tin tức nằm trong [news_crawler](news_crawler/): crawl 51 nguồn cho 14 mã cổ phiếu (2020-01-01 → 2026-09-25) và gộp với dữ liệu của Thảo, ra dataset 4.491 bài (bản này cũng nằm ở `Stocks/data/raw/news_raw.csv`). Xem [quy trình crawl](news_crawler/README.md).
+
 - Chuẩn bị dữ liệu: notebook 01–02.
 - Phân loại loại tin: notebook 03–06; đã có kết quả huấn luyện, đánh giá và dự đoán.
 - Sentiment và liên kết TN1: thư mục riêng, chưa triển khai.
