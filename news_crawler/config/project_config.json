@@ -1,0 +1,13 @@
+{
+  "start_date": "2020-01-01",
+  "end_date": "2026-09-25",
+  "tickers": ["ANV", "DBC", "DGW", "DHG", "FRT", "IMP", "MSN", "MWG", "PNJ", "QNS", "SAB", "SBT", "VHC", "VNM"],
+  "source_count": 51,
+  "news_raw_file": "data/raw/news_raw.csv",
+  "news_ticker_file": "data/final/news_ticker.csv",
+  "coverage_file": "outputs/coverage/coverage.csv",
+  "crawl_log_file": "logs/crawl.log",
+  "request_delay_seconds": 0.5,
+  "max_retries": 3,
+  "max_articles_per_source": 10
+}
