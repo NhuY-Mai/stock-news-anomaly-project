@@ -1,0 +1,225 @@
+2026-09-28 11:33:17,860 INFO Crawled Kênh thông tin kinh tế - tài chính Việt Nam from CafeF
+2026-09-28 11:33:18,138 WARNING Skipping article without title: http://liveboard.cafef.vn
+2026-09-28 11:33:19,092 WARNING Skipping article without title: https://cafef.vn/du-lieu/danh-muc-dau-tu.chn
+2026-09-28 11:33:19,278 WARNING Skipping article without title: https://cafef.vn/doc-nhanh.chn
+2026-09-28 11:33:19,488 INFO Crawled Tin tức xã hội trong nước, quốc tế cập nhật liên tục 24/7 | CafeF from CafeF
+2026-09-28 11:33:20,165 INFO Crawled Doanh nghiệp viêt: Tin tức, Video, hình ảnh Doanh nghiệp viêt | CafeBiz from CafeBiz
+2026-09-28 11:33:20,401 INFO Crawled CafeBiz - Thông tin kinh doanh - Doanh nhân from CafeBiz
+2026-09-28 11:33:20,669 INFO Crawled CafeBiz - Thông tin kinh doanh - Doanh nhân from CafeBiz
+2026-09-28 11:33:20,892 INFO Crawled Xã Hội - Tin tức, hình ảnh, sự kiện nóng nhất 24h from CafeBiz
+2026-09-28 11:33:21,128 INFO Crawled Kinh tế vĩ mô - Tin tức về kinh tế Việt Nam và thế giới mới nhất from CafeBiz
+2026-09-28 11:33:21,876 INFO Crawled Báo VnExpress - Báo tiếng Việt nhiều người xem nhất from VnExpress
+2026-09-28 11:33:21,969 INFO Crawled Lịch âm, Lịch vạn niên 2026 - Xem lịch âm, lịch dương, giờ hoàng đạo... from VnExpress
+2026-09-28 11:33:22,095 INFO Crawled Tin tức 24h tại Việt Nam & Thế giới mới nhất [HÔM NAY] from VnExpress
+2026-09-28 11:33:22,201 INFO Crawled Tin tức Hà Nội 24h mới nhất, báo Hà Nội mới hàng ngày from VnExpress
+2026-09-28 11:33:22,300 INFO Crawled Tin tức TP HCM 24h mới nhất, báo Sài Gòn mới hàng ngày from VnExpress
+2026-09-28 11:33:22,876 INFO Crawled Tin tức, tin nhanh 24h Việt Nam và thế giới - Báo VietNamNet from VietnamNet
+2026-09-28 11:33:23,138 INFO Crawled FIFA ASEAN Cup 2026 from VietnamNet
+2026-09-28 11:33:23,380 INFO Crawled Asiad 20 - Đại hội Thể thao Châu Á - Asian Games 2026 from VietnamNet
+2026-09-28 11:33:23,661 INFO Crawled Tuần Việt Nam - tin tiêu điểm, tin đa chiều Vietnamnet from VietnamNet
+2026-09-28 11:33:23,899 INFO Crawled News from VietnamNet
+2026-09-28 11:33:23,926 ERROR Failed to fetch seed page for VnEconomy (https://vneconomy.vn/tag/ANV): <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>
+2026-09-28 11:33:24,193 INFO Crawled VnBusiness B+ - VnBusiness from VnBusiness
+2026-09-28 11:33:24,283 WARNING Skipping article without title: https://vnbusiness.vn/rss
+2026-09-28 11:33:24,391 WARNING Skipping article without title: https://vnbusiness.vn/tai-khoan/thong-tin-ca-nhan
+2026-09-28 11:33:24,508 INFO Crawled Tạp chí điện tử Kinh Doanh - VnBusiness from VnBusiness
+2026-09-28 11:33:24,618 INFO Crawled Bảo vệ nền tảng tư tưởng của Đảng - VnBusiness from VnBusiness
+2026-09-28 11:33:24,865 INFO Crawled Tin tức Việt Nam và quốc tế nóng, nhanh, cập nhật 24h from DanTri
+2026-09-28 11:33:25,177 INFO Crawled Chuyên trang thông tin kinh tế - tài chính | Báo Dân trí from DanTri
+2026-09-28 11:33:25,419 INFO Crawled DTiNews - Dan Tri International, the news gateway of Vietnam from DanTri
+2026-09-28 11:33:25,724 INFO Crawled Tin tức mới nhất cập nhật liên tục | Nội Vụ & Xã Hội from DanTri
+2026-09-28 11:33:25,813 INFO Crawled Tổng Bí thư, Chủ tịch nước công du Mỹ, Canada from DanTri
+2026-09-28 11:34:46,666 INFO Crawled Tạp chí Doanh nghiệp Việt Nam, Đọc báo tin tức doanh nghiệp - Tạp chí Doanh nghiệp Việt Nam from DoanhNghiepVN
+2026-09-28 11:35:27,108 INFO Crawled Tin tức - Sự kiện - Tạp chí Doanh nghiệp Việt Nam from DoanhNghiepVN
+2026-09-28 11:36:07,434 INFO Crawled Xã hội - Tạp chí Doanh nghiệp Việt Nam from DoanhNghiepVN
+2026-09-28 11:36:47,843 INFO Crawled Chính trị - Tạp chí Doanh nghiệp Việt Nam from DoanhNghiepVN
+2026-09-28 11:37:28,172 INFO Crawled Môi trường - Tạp chí Doanh nghiệp Việt Nam from DoanhNghiepVN
+2026-09-28 11:37:28,578 WARNING Skipping article without title: https://suckhoedoisong.vn/
+2026-09-28 11:37:28,684 ERROR Failed to fetch seed page for ZNEWS (https://znews.vn/kinh-te.html): HTTP Error 404: Not Found
+2026-09-28 11:37:29,097 INFO Crawled House n Home : 3 mẹo cọ xoong nồi cháy đen cực hiệu quả cho mọi nhà from Soha
+2026-09-28 11:37:29,285 INFO Crawled Hành trình bất tận : Bãi biển ở địa phương miền Trung đang nổi được du khách khen ngợi: "Như trong phim điện ảnh!" from Soha
+2026-09-28 11:37:29,480 INFO Crawled Soha Special : Vụ 147 điểm 10 môn Toán tại trường Chuyên Tuyên Quang: "Công bằng” cho ai? “Thành tích” của ai? from Soha
+2026-09-28 11:37:29,713 INFO Crawled SOHA - Tin tức, tin nhanh VN, Tốc độ, Tin cậy | soha.vn from Soha
+2026-09-28 11:37:29,888 INFO Crawled Dòng sự kiện: AI kiến tạo tương lai | soha.vn from Soha
+2026-09-28 11:38:50,630 INFO Crawled Đầu tư Việt Nam - Tin tức đầu tư, kinh doanh, tài chính mới nhất 24h from DauTuVN
+2026-09-28 11:39:30,805 ERROR Failed to fetch article https://dautuvietnam.com.vn/cdn-cgi/l/email-protection for source DauTuVN: HTTP Error 404: Not Found
+2026-09-28 11:40:11,151 INFO Crawled Đầu tư Việt Nam - Tin tức đầu tư, kinh doanh, tài chính mới nhất 24h from DauTuVN
+2026-09-28 11:40:51,504 INFO Crawled Thời sự - Tin tức thời sự trong nước và quốc tế nóng nhất 24h qua from DauTuVN
+2026-09-28 11:41:31,807 INFO Crawled Đầu tư - Tin tức đầu tư, kiến thức đầu tư dành cho các Nhà đầu tư from DauTuVN
+2026-09-28 11:41:32,306 WARNING Skipping article without title: https://doisongvietnam.vn/
+2026-09-28 11:41:53,012 WARNING Skipping article without title: https://www.facebook.com/doisongvietnam.vn/
+2026-09-28 11:41:53,218 INFO Crawled Xã hội from DoiSongVN
+2026-09-28 11:41:53,419 INFO Crawled Đời sống from DoiSongVN
+2026-09-28 11:41:53,599 INFO Crawled Quốc tế from DoiSongVN
+2026-09-28 11:41:54,182 INFO Crawled Tin tức thị trường | Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h from TuoiTre
+2026-09-28 11:41:54,408 INFO Crawled Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h from TuoiTre
+2026-09-28 11:41:54,495 INFO Crawled Tin tức, audio, podcast - Podcast - Tuổi Trẻ Online from TuoiTre
+2026-09-28 11:41:54,746 INFO Crawled Thông Tin - Cần Biết - Mua Bán - Dịch Vụ - Tuổi Trẻ Online from TuoiTre
+2026-09-28 11:41:54,830 INFO Crawled Bảng Giá Quảng Cáo Báo Giấy, Tuổi Trẻ Online 2026 from TuoiTre
+2026-09-28 11:41:55,450 INFO Crawled Bạn cần biết - Thông tin sản phẩm, dịch vụ, kinh doanh - Báo Thanh Niên from ThanhNien
+2026-09-28 11:41:55,732 INFO Crawled Thời tiết - Dự báo hôm nay, ngày mai, 10 ngày tới ra sao from ThanhNien
+2026-09-28 11:41:55,941 INFO Crawled Tin tức 24h mới nhất, tin nhanh, tin nóng hàng ngày | Báo Thanh Niên from ThanhNien
+2026-09-28 11:41:56,174 INFO Crawled Tin tức 24h mới nhất, tin nhanh, tin nóng hàng ngày | Báo Thanh Niên from ThanhNien
+2026-09-28 11:41:56,375 INFO Crawled Bảng giá quảng cáo | Báo Thanh Niên from ThanhNien
+2026-09-28 11:41:56,380 INFO Saved 52 rows to C:\Users\DELL\Downloads\stock_news_anomaly_python_structure\stock_news_anomaly\data\raw\news_raw.csv
+2026-09-28 11:45:09,222 INFO Crawled CafeF: https://cafef.vn/vua-mua-xong-1-trieu-co-phieu-thieu-gia-nha-vua-ca-ro-phi-viet-lai-muon-gom-them-1-trieu-don-vi-anv-188260326100251706.chn
+2026-09-28 11:45:10,040 INFO Crawled CafeF: https://cafef.vn/ban-ca-ro-phi-so-1-viet-nam-doanh-nghiep-bao-lai-1000-ty-gap-21-lan-nam-truoc-188260122174027189.chn
+2026-09-28 11:45:10,879 INFO Crawled CafeF: https://cafef.vn/nguoi-dan-ong-u80-que-thanh-hoa-co-khoi-tai-san-gan-3800-ty-ban-ca-ro-phi-so-1-viet-nam-kiem-duoc-them-900-ty-trong-nam-2025-188260106145216959.chn
+2026-09-28 11:45:12,153 INFO Crawled CafeBiz: https://cafebiz.vn/noi-com-nhat-noi-dia-500-600-usd-van-hut-khach-viet-vi-sao-hang-viet-lai-kho-ban-tren-san-nha-176260918151454448.chn
+2026-09-28 11:45:13,080 INFO Crawled CafeBiz: https://cafebiz.vn/doanh-nghiep-viet-tung-kien-amazon-doi-280-trieu-usd-len-tieng-ve-khoan-ton-kho-800-ty-dong-sau-khi-bi-toa-my-bac-don-176260903112335272.chn
+2026-09-28 11:45:13,943 WARNING Rejected https://cafebiz.vn/1-doanh-nghiep-xuat-khau-viet-bi-lua-dao-72000-usd-176260611082811673.chn (CafeBiz): outside requested date range
+2026-09-28 11:45:14,350 INFO Crawled CafeBiz: https://cafebiz.vn/wechoice-awards-2025-va-khoanh-khac-ton-vinh-nhung-doanh-nghiep-viet-chinh-phuc-bien-lon-176260214110714541.chn
+2026-09-28 11:45:15,070 INFO Crawled VnExpress: https://vnexpress.net/san-crypto-bitget-bi-hack-gan-388-trieu-usd-5125580.html
+2026-09-28 11:45:15,682 INFO Crawled VnExpress: https://vnexpress.net/gia-vang-mieng-xuong-thap-nhat-mot-thang-5125572.html
+2026-09-28 11:45:16,317 INFO Crawled VnExpress: https://vnexpress.net/doanh-nghiep-von-137-000-ty-sap-nhap-vao-cong-ty-san-xuat-xe-vinfast-5125517.html
+2026-09-28 11:45:17,457 WARNING Rejected https://vietnamnet.vn/the-thao/fifa-asean-cup-2026-sk0008NJ.html (VietnamNet): missing/short article body
+2026-09-28 11:45:17,701 WARNING Rejected https://vietnamnet.vn/du-lich/chuyen-cua-nhung-dong-song-sk0008F1.html (VietnamNet): missing/short article body
+2026-09-28 11:45:17,913 INFO Crawled VietnamNet: https://vietnamnet.vn/huy-hop-dong-bao-hiem-sau-hon-2-nam-dong-150-trieu-nguoi-mua-nhan-ve-21-trieu-2559147.html
+2026-09-28 11:45:18,665 INFO Crawled VietnamNet: https://vietnamnet.vn/ngan-hang-rao-ban-4-can-biet-thu-da-lat-gia-giam-4-ty-sau-vai-tuan-2557627.html
+2026-09-28 11:45:19,446 INFO Crawled VietnamNet: https://vietnamnet.vn/mua-goi-bao-hiem-300-trieu-chong-qua-doi-vi-ung-thu-nhung-khong-duoc-chi-tra-2559367.html
+2026-09-28 11:45:21,554 ERROR Failed seed https://vneconomy.vn/tag/ANV (VnEconomy): <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>
+2026-09-28 11:45:21,851 WARNING Rejected https://vnbusiness.vn/phan-cap-de-giam-thu-tuc-sao-doanh-nghiep-lai-vuong-them-cua-moi.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:21,976 WARNING Rejected https://vnbusiness.vn/nang-cap-quan-he-viet-nam-canada-len-doi-tac-chien-luoc.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:22,081 WARNING Rejected https://vnbusiness.vn/khu-cong-nghiep-can-tao-gia-tri-thay-vi-chi-lap-day.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:22,219 WARNING Rejected https://vnbusiness.vn/gia-vang-trong-nuoc-co-xu-huong-tich-luy.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:22,327 WARNING Rejected https://vnbusiness.vn/lai-suat-lien-tuc-tang-nhiet-suc-ep-chi-phi-von-bua-vay-thi-truong.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:22,460 WARNING Rejected https://vnbusiness.vn/gia-vang-trong-nuoc-lang-song.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:22,608 WARNING Rejected https://vnbusiness.vn/pvcombank-tang-von-sau-13-nam-chao-ban-co-phieu-cao-hon-62-thi-gia-tren-san.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:22,733 WARNING Rejected https://vnbusiness.vn/co-phieu-ban-le-truoc-mua-cao-diem-cuoi-nam.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:22,922 WARNING Rejected https://vnbusiness.vn/ho-vin-dong-loat-tang-manh-keo-chi-so-vn-index-dao-chieu-ngoan-muc.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:23,049 WARNING Rejected https://vnbusiness.vn/van-ly-do-khien-can-ho-gia-re-cung-kho-ban.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:23,170 WARNING Rejected https://vnbusiness.vn/y-khoa-chuan-my-manh-ghep-hoan-thien-ha-tang-song-an-tam-tron-doi-tai-vinhomes-green-paradise.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:23,292 WARNING Rejected https://vnbusiness.vn/tam-nhin-huong-vinh-co-san-vuon-rieng-nhip-song-binh-yen-tren-suon-doi-gia-tri-tao-suc-hut-cho-vinh-may.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:23,431 WARNING Rejected https://vnbusiness.vn/gia-ca-phe-tang-them-1000-dongkg-nong-dan-tay-nguyen-phan-khoi-don-nhip-phuc-hoi.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:23,553 WARNING Rejected https://vnbusiness.vn/15-bao-bi-mem-tai-viet-nam-khong-qua-duoc-mat-than-tai-che-chau-au.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:23,702 WARNING Rejected https://vnbusiness.vn/quy-dinh-moi-ve-dieu-kien-kinh-doanh-xuat-khau-gao.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:45:23,980 WARNING Rejected https://dantri.com.vn/event/tong-bi-thu-chu-tich-nuoc-cong-du-my-canada-10669.htm (DanTri): missing/short article body
+2026-09-28 11:45:24,097 WARNING Rejected https://dantri.com.vn/event/himass-va-tanvuu-bi-khoa-tai-khoan-pubg-10723.htm (DanTri): missing/short article body
+2026-09-28 11:45:24,202 WARNING Rejected https://dantri.com.vn/event/bo-diem-cong-ielts-10682.htm (DanTri): missing/short article body
+2026-09-28 11:45:24,332 WARNING Rejected https://dantri.com.vn/event/bao-luc-san-co-v-league-10698.htm (DanTri): missing/short article body
+2026-09-28 11:45:24,429 WARNING Rejected https://dantri.com.vn/event/phim-ngan-ai-va-hau-qua-cua-con-nghien-giai-tri-10693.htm (DanTri): missing/short article body
+2026-09-28 11:45:24,566 WARNING Rejected https://dantri.com.vn/event/thoi-han-su-dung-chung-cu-10658.htm (DanTri): missing/short article body
+2026-09-28 11:45:24,663 WARNING Rejected https://dantri.com.vn/event/fifa-asean-cup-2026-9633.htm (DanTri): missing/short article body
+2026-09-28 11:45:24,791 WARNING Rejected https://dantri.com.vn/the-gioi/phan-tich-binh-luan.htm (DanTri): missing/short article body
+2026-09-28 11:45:24,933 WARNING Rejected https://dantri.com.vn/thoi-su/dua-nghi-quyet-cua-dang-vao-cuoc-song.htm (DanTri): missing/short article body
+2026-09-28 11:45:25,074 WARNING Rejected https://dantri.com.vn/thoi-su/bau-cu-dai-bieu-quoc-hoi.htm (DanTri): missing/short article body
+2026-09-28 11:45:25,190 WARNING Rejected https://dantri.com.vn/suc-khoe/than-benh-man-tinh.htm (DanTri): missing/short article body
+2026-09-28 11:45:25,295 WARNING Rejected https://dantri.com.vn/suc-khoe/tam-soat-chan-doan.htm (DanTri): missing/short article body
+2026-09-28 11:45:25,428 WARNING Rejected https://dantri.com.vn/suc-khoe/sinh-san-hiem-muon.htm (DanTri): missing/short article body
+2026-09-28 11:45:25,545 WARNING Rejected https://dantri.com.vn/suc-khoe/ngoai-than-kinh-cot-song.htm (DanTri): missing/short article body
+2026-09-28 11:45:25,667 WARNING Rejected https://dantri.com.vn/suc-khoe/thuoc-va-giai-phap-ho-tro.htm (DanTri): missing/short article body
+2026-09-28 11:46:46,686 INFO Crawled DoanhNghiepVN: https://doanhnghiepvn.vn/kinh-te/khach-nga-va-cis-den-da-nang-tang-gan-94/20260925035625761
+2026-09-28 11:47:27,549 INFO Crawled DoanhNghiepVN: https://doanhnghiepvn.vn/kinh-te/kinh-doanh/ceo-nguyen-van-thanh-aves-tim-cong-su-de-cung-tao-ra-nhung-chiec-xe-tuong-lai-cua-nguoi-viet/20260923112222064
+2026-09-28 11:48:08,414 INFO Crawled DoanhNghiepVN: https://doanhnghiepvn.vn/kinh-te/co-phieu-vpb-khoi-sac-trong-phien-dau-tien-sau-nang-hang/20260923025303509
+2026-09-28 11:48:09,231 ERROR Failed seed https://znews.vn/kinh-te.html (ZNEWS): HTTP Error 404: Not Found
+2026-09-28 11:48:09,699 INFO Crawled Soha: https://soha.vn/ong-pham-nhat-vuong-tiep-tuc-cho-xay-them-1-toa-thap-45-tang-giua-dao-giai-tri-thuong-mai-cua-mien-bac-duoc-vi-nhu-trai-tim-cua-sieu-du-an-456639-ty-dong-mo-hinh-tuong-tu-o-singapore-san-francisco-198260928062545383.htm
+2026-09-28 11:48:10,413 INFO Crawled Soha: https://soha.vn/cu-bat-tay-hon-3-ty-usd-tai-qatar-doanh-nghiep-viet-lap-ky-luc-lon-nhat-lich-su-198260927115125428.htm
+2026-09-28 11:48:11,162 INFO Crawled Soha: https://soha.vn/tro-do-den-quen-thuoc-hut-hon-106000-ty-dong-moi-nam-tu-tui-nguoi-viet-198260925152810152.htm
+2026-09-28 11:49:32,926 WARNING Rejected https://dautuvietnam.com.vn/doanh-nhan/goc-nhin/bong-dang-con-trai-ty-phu-nguyen-thi-phuong-thao-trong-thuong-vu-voi-starlink-a26153.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:50:13,515 WARNING Rejected https://dautuvietnam.com.vn/dau-tu/tai-chinh-ngan-hang/pvcombank-dang-lam-an-ra-sao-a26155.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:50:54,022 WARNING Rejected https://dautuvietnam.com.vn/bat-dong-san/thi-truong-dia-oc/phu-tho-thuc-tien-do-loat-du-an-cua-sun-group-a26124.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:51:31,590 INFO Crawled CafeF: https://cafef.vn/vua-mua-xong-1-trieu-co-phieu-thieu-gia-nha-vua-ca-ro-phi-viet-lai-muon-gom-them-1-trieu-don-vi-anv-188260326100251706.chn
+2026-09-28 11:51:32,344 INFO Crawled CafeF: https://cafef.vn/ban-ca-ro-phi-so-1-viet-nam-doanh-nghiep-bao-lai-1000-ty-gap-21-lan-nam-truoc-188260122174027189.chn
+2026-09-28 11:51:35,086 INFO Crawled CafeBiz: https://cafebiz.vn/noi-com-nhat-noi-dia-500-600-usd-van-hut-khach-viet-vi-sao-hang-viet-lai-kho-ban-tren-san-nha-176260918151454448.chn
+2026-09-28 11:51:35,907 INFO Crawled CafeBiz: https://cafebiz.vn/doanh-nghiep-viet-tung-kien-amazon-doi-280-trieu-usd-len-tieng-ve-khoan-ton-kho-800-ty-dong-sau-khi-bi-toa-my-bac-don-176260903112335272.chn
+2026-09-28 11:51:36,631 INFO Crawled VnExpress: https://vnexpress.net/san-crypto-bitget-bi-hack-gan-388-trieu-usd-5125580.html
+2026-09-28 11:51:37,231 INFO Crawled VnExpress: https://vnexpress.net/gia-vang-mieng-xuong-thap-nhat-mot-thang-5125572.html
+2026-09-28 11:51:38,227 WARNING Rejected https://vietnamnet.vn/the-thao/fifa-asean-cup-2026-sk0008NJ.html (VietnamNet): missing/short article body
+2026-09-28 11:51:38,443 WARNING Rejected https://vietnamnet.vn/du-lich/chuyen-cua-nhung-dong-song-sk0008F1.html (VietnamNet): missing/short article body
+2026-09-28 11:51:38,671 INFO Crawled VietnamNet: https://vietnamnet.vn/huy-hop-dong-bao-hiem-sau-hon-2-nam-dong-150-trieu-nguoi-mua-nhan-ve-21-trieu-2559147.html
+2026-09-28 11:51:39,378 INFO Crawled VietnamNet: https://vietnamnet.vn/ngan-hang-rao-ban-4-can-biet-thu-da-lat-gia-giam-4-ty-sau-vai-tuan-2557627.html
+2026-09-28 11:51:39,905 ERROR Failed seed https://vneconomy.vn/tag/ANV (VnEconomy): <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>
+2026-09-28 11:51:40,157 WARNING Rejected https://vnbusiness.vn/phan-cap-de-giam-thu-tuc-sao-doanh-nghiep-lai-vuong-them-cua-moi.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:40,276 WARNING Rejected https://vnbusiness.vn/nang-cap-quan-he-viet-nam-canada-len-doi-tac-chien-luoc.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:40,470 WARNING Rejected https://vnbusiness.vn/khu-cong-nghiep-can-tao-gia-tri-thay-vi-chi-lap-day.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:40,584 WARNING Rejected https://vnbusiness.vn/gia-vang-trong-nuoc-co-xu-huong-tich-luy.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:40,702 WARNING Rejected https://vnbusiness.vn/lai-suat-lien-tuc-tang-nhiet-suc-ep-chi-phi-von-bua-vay-thi-truong.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:40,796 WARNING Rejected https://vnbusiness.vn/gia-vang-trong-nuoc-lang-song.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:40,915 WARNING Rejected https://vnbusiness.vn/pvcombank-tang-von-sau-13-nam-chao-ban-co-phieu-cao-hon-62-thi-gia-tren-san.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:41,008 WARNING Rejected https://vnbusiness.vn/co-phieu-ban-le-truoc-mua-cao-diem-cuoi-nam.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:41,155 WARNING Rejected https://vnbusiness.vn/ho-vin-dong-loat-tang-manh-keo-chi-so-vn-index-dao-chieu-ngoan-muc.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:41,261 WARNING Rejected https://vnbusiness.vn/van-ly-do-khien-can-ho-gia-re-cung-kho-ban.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:51:41,472 WARNING Rejected https://dantri.com.vn/event/tong-bi-thu-chu-tich-nuoc-cong-du-my-canada-10669.htm (DanTri): missing/short article body
+2026-09-28 11:51:41,585 WARNING Rejected https://dantri.com.vn/event/himass-va-tanvuu-bi-khoa-tai-khoan-pubg-10723.htm (DanTri): missing/short article body
+2026-09-28 11:51:41,688 WARNING Rejected https://dantri.com.vn/event/bo-diem-cong-ielts-10682.htm (DanTri): missing/short article body
+2026-09-28 11:51:41,794 WARNING Rejected https://dantri.com.vn/event/bao-luc-san-co-v-league-10698.htm (DanTri): missing/short article body
+2026-09-28 11:51:41,927 WARNING Rejected https://dantri.com.vn/event/phim-ngan-ai-va-hau-qua-cua-con-nghien-giai-tri-10693.htm (DanTri): missing/short article body
+2026-09-28 11:51:42,020 WARNING Rejected https://dantri.com.vn/event/thoi-han-su-dung-chung-cu-10658.htm (DanTri): missing/short article body
+2026-09-28 11:51:42,128 WARNING Rejected https://dantri.com.vn/event/fifa-asean-cup-2026-9633.htm (DanTri): missing/short article body
+2026-09-28 11:51:42,230 WARNING Rejected https://dantri.com.vn/the-gioi/phan-tich-binh-luan.htm (DanTri): missing/short article body
+2026-09-28 11:51:42,340 WARNING Rejected https://dantri.com.vn/thoi-su/dua-nghi-quyet-cua-dang-vao-cuoc-song.htm (DanTri): missing/short article body
+2026-09-28 11:51:42,453 WARNING Rejected https://dantri.com.vn/thoi-su/bau-cu-dai-bieu-quoc-hoi.htm (DanTri): missing/short article body
+2026-09-28 11:52:23,210 INFO Crawled DoanhNghiepVN: https://doanhnghiepvn.vn/kinh-te/khach-nga-va-cis-den-da-nang-tang-gan-94/20260925035625761
+2026-09-28 11:52:44,065 INFO Crawled DoanhNghiepVN: https://doanhnghiepvn.vn/kinh-te/kinh-doanh/ceo-nguyen-van-thanh-aves-tim-cong-su-de-cung-tao-ra-nhung-chiec-xe-tuong-lai-cua-nguoi-viet/20260923112222064
+2026-09-28 11:52:44,868 ERROR Failed seed https://znews.vn/kinh-te.html (ZNEWS): HTTP Error 404: Not Found
+2026-09-28 11:52:45,304 INFO Crawled Soha: https://soha.vn/ong-pham-nhat-vuong-tiep-tuc-cho-xay-them-1-toa-thap-45-tang-giua-dao-giai-tri-thuong-mai-cua-mien-bac-duoc-vi-nhu-trai-tim-cua-sieu-du-an-456639-ty-dong-mo-hinh-tuong-tu-o-singapore-san-francisco-198260928062545383.htm
+2026-09-28 11:52:46,018 INFO Crawled Soha: https://soha.vn/cu-bat-tay-hon-3-ty-usd-tai-qatar-doanh-nghiep-viet-lap-ky-luc-lon-nhat-lich-su-198260927115125428.htm
+2026-09-28 11:53:27,736 WARNING Rejected https://dautuvietnam.com.vn/doanh-nhan/goc-nhin/bong-dang-con-trai-ty-phu-nguyen-thi-phuong-thao-trong-thuong-vu-voi-starlink-a26153.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:53:48,449 WARNING Rejected https://dautuvietnam.com.vn/dau-tu/tai-chinh-ngan-hang/pvcombank-dang-lam-an-ra-sao-a26155.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:54:09,134 WARNING Rejected https://dautuvietnam.com.vn/bat-dong-san/thi-truong-dia-oc/phu-tho-thuc-tien-do-loat-du-an-cua-sun-group-a26124.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:54:29,662 WARNING Rejected https://dautuvietnam.com.vn/dau-tu/tai-chinh-ngan-hang/dang-sau-nuoc-co-gom-gan-12000-ty-dong-trai-phieu-cua-lpbank-a26125.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:54:50,136 WARNING Rejected https://dautuvietnam.com.vn/kinh-doanh/thi-truong/no-phai-tra-cua-van-huong-thanh-vien-geleximco-vuot-1-ty-usd-a26126.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:55:10,789 WARNING Rejected https://dautuvietnam.com.vn/thoi-su/tin-tuc-trong-nuoc/thanh-tra-chinh-phu-chuyen-bo-cong-an-ho-so-loat-sai-pham-cua-sjc-pnj-bao-tin-manh-hai-va-mi-hong-a26024.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:55:31,261 WARNING Rejected https://dautuvietnam.com.vn/kinh-doanh/tu-van-chien-luoc/pvcombank-om-no-xau-cua-phu-gia-thinh-ai-chiu-trach-nhiem-neu-ban-no-bat-thanh-a26028.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:55:51,865 WARNING Rejected https://dautuvietnam.com.vn/doanh-nhan/goc-nhin/dn-lien-quan-sieu-du-an-song-hong-tang-von-len-39450-ty-hoa-phat-gop-8000-ty-bang-mot-tai-san-dac-biet-a25983.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:56:12,334 WARNING Rejected https://dautuvietnam.com.vn/kinh-doanh/hop-tac/masan-nang-ke-hoach-doanh-thu-nam-2026-len-105000-ty-dong-loi-nhuan-co-the-tang-gan-46-a25985.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:56:33,032 WARNING Rejected https://dautuvietnam.com.vn/thoi-su/tin-tuc-trong-nuoc/chu-dau-tu-eurowindow-river-park-huy-dong-hon-1200-ty-trai-phieu-a25957.html (DauTuVN): missing/unparseable publication date
+2026-09-28 11:56:33,526 INFO Crawled DoiSongVN: https://doisongvietnam.vn/gan-20-trieu-my-pham-gia-khoac-ao-hang-ngoai-chuan-bi-tuon-ban-ra-thi-truong-163542-3.html
+2026-09-28 11:56:34,220 INFO Crawled DoiSongVN: https://doisongvietnam.vn/nong-dan-gap-kho-dau-ra-lua-he-thu-163544-3.html
+2026-09-28 11:56:35,313 WARNING Rejected https://tuoitre.vn/nhip-song-tre/tuoi-tre-start-up-award.htm (TuoiTre): missing/unparseable publication date
+2026-09-28 11:56:35,580 INFO Crawled TuoiTre: https://tuoitre.vn/hanh-trinh-500-ngay-dem.htm
+2026-09-28 11:56:36,395 WARNING Rejected https://tuoitre.vn/trai-nghiem-va-danh-gia.htm (TuoiTre): missing/unparseable publication date
+2026-09-28 11:56:36,699 WARNING Rejected https://tuoitre.vn/chung-khoan/phan-tich-nhan-dinh.htm (TuoiTre): missing/unparseable publication date
+2026-09-28 11:56:36,974 WARNING Rejected https://tuoitre.vn/chung-khoan/doanh-nghiep-niem-yet.htm (TuoiTre): missing/unparseable publication date
+2026-09-28 11:56:37,236 INFO Crawled TuoiTre: https://tuoitre.vn/doc-nhanh-26-9-vang-tang-gia-nhe-nhung-van-duoi-4300-usd-loi-suat-my-len-cao-nhat-19-nam-100260926075246416.htm
+2026-09-28 11:56:38,692 INFO Crawled ThanhNien: https://thanhnien.vn/phia-sau-giac-mo-nghi-huu-tren-dinh-chung-khoan-185260922213441594.htm
+2026-09-28 11:56:39,410 INFO Crawled ThanhNien: https://thanhnien.vn/hon-21-ti-usd-von-ngoai-chuan-bi-do-bo-vao-co-phieu-18526091517340133.htm
+2026-09-28 11:56:39,914 INFO Saved 18 verified rows to C:\Users\DELL\Downloads\stock_news_anomaly_python_structure\stock_news_anomaly\data\raw\news_raw.csv
+2026-09-28 11:57:50,451 INFO Crawled CafeF: https://cafef.vn/vua-mua-xong-1-trieu-co-phieu-thieu-gia-nha-vua-ca-ro-phi-viet-lai-muon-gom-them-1-trieu-don-vi-anv-188260326100251706.chn
+2026-09-28 11:57:51,357 INFO Crawled CafeF: https://cafef.vn/ban-ca-ro-phi-so-1-viet-nam-doanh-nghiep-bao-lai-1000-ty-gap-21-lan-nam-truoc-188260122174027189.chn
+2026-09-28 11:57:52,911 INFO Crawled CafeBiz: https://cafebiz.vn/noi-com-nhat-noi-dia-500-600-usd-van-hut-khach-viet-vi-sao-hang-viet-lai-kho-ban-tren-san-nha-176260918151454448.chn
+2026-09-28 11:57:54,249 INFO Crawled CafeBiz: https://cafebiz.vn/doanh-nghiep-viet-tung-kien-amazon-doi-280-trieu-usd-len-tieng-ve-khoan-ton-kho-800-ty-dong-sau-khi-bi-toa-my-bac-don-176260903112335272.chn
+2026-09-28 11:57:55,935 INFO Crawled VnExpress: https://vnexpress.net/hang-dung-sau-game-pubg-kinh-doanh-ra-sao-5124643.html
+2026-09-28 11:57:57,153 WARNING Rejected https://vnexpress.net/kinh-doanh/doanh-nghiep-vuon-minh (VnExpress): missing/unparseable publication date
+2026-09-28 11:57:58,066 INFO Crawled VnExpress: https://vnexpress.net/kinh-doanh/tien-cua-toi
+2026-09-28 11:57:59,455 WARNING Rejected https://vietnamnet.vn/kinh-doanh/diem-tin-dung-cong-dan-4-0 (VietnamNet): missing/short article body
+2026-09-28 11:57:59,902 WARNING Rejected https://vietnamnet.vn/the-thao/fifa-asean-cup-2026-sk0008NJ.html (VietnamNet): missing/short article body
+2026-09-28 11:58:00,341 WARNING Rejected https://vietnamnet.vn/kinh-doanh/tu-van-tai-chinh (VietnamNet): missing/short article body
+2026-09-28 11:58:00,792 WARNING Rejected https://vietnamnet.vn/du-lich/chuyen-cua-nhung-dong-song-sk0008F1.html (VietnamNet): missing/short article body
+2026-09-28 11:58:01,217 INFO Crawled VietnamNet: https://vietnamnet.vn/huy-hop-dong-bao-hiem-sau-hon-2-nam-dong-150-trieu-nguoi-mua-nhan-ve-21-trieu-2559147.html
+2026-09-28 11:58:02,200 INFO Crawled VietnamNet: https://vietnamnet.vn/ngan-hang-rao-ban-4-can-biet-thu-da-lat-gia-giam-4-ty-sau-vai-tuan-2557627.html
+2026-09-28 11:58:03,592 WARNING Rejected https://vnbusiness.vn/dong-tien-co-kha-nang-roi-bai-do-tiet-kiem-tim-co-hoi-voi-chung-khoan.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:03,927 WARNING Rejected https://vnbusiness.vn/chung-khoan-cuoi-nam-nang-hang-mo-cua-don-von-nhung-gio-nguoc-xuat-hien.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:04,228 WARNING Rejected https://vnbusiness.vn/6-dau-an-cua-thi-truong-chung-khoan-2025.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:04,523 WARNING Rejected https://vnbusiness.vn/chung-khoan-2026-don-co-hoi-lon.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:04,843 WARNING Rejected https://vnbusiness.vn/phan-cap-de-giam-thu-tuc-sao-doanh-nghiep-lai-vuong-them-cua-moi.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:05,139 WARNING Rejected https://vnbusiness.vn/nang-cap-quan-he-viet-nam-canada-len-doi-tac-chien-luoc.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:05,446 WARNING Rejected https://vnbusiness.vn/khu-cong-nghiep-can-tao-gia-tri-thay-vi-chi-lap-day.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:05,760 WARNING Rejected https://vnbusiness.vn/gia-vang-trong-nuoc-co-xu-huong-tich-luy.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:06,106 WARNING Rejected https://vnbusiness.vn/lai-suat-lien-tuc-tang-nhiet-suc-ep-chi-phi-von-bua-vay-thi-truong.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:06,437 WARNING Rejected https://vnbusiness.vn/gia-vang-trong-nuoc-lang-song.html (VnBusiness): missing/unparseable publication date
+2026-09-28 11:58:07,123 WARNING Rejected https://dantri.com.vn/kinh-doanh/tin-buoc-cung-viet-nam.htm (DanTri): missing/short article body
+2026-09-28 11:58:07,418 WARNING Rejected https://dantri.com.vn/kinh-doanh/toan-canh-kinh-te-tu-nhan.htm (DanTri): missing/short article body
+2026-09-28 11:58:07,697 INFO Crawled DanTri: https://dantri.com.vn/kinh-doanh/gia-vang-thung-moc-4200-usd-pho-wall-chia-re-nha-dau-tu-van-bam-tru-20260928100722446.htm
+2026-09-28 11:58:08,498 INFO Crawled DanTri: https://dantri.com.vn/kinh-doanh/cac-nuoc-vung-vinh-tim-cach-duy-tri-dong-chay-dau-cuoc-dua-nghet-tho-20260928094842967.htm
+2026-09-28 11:58:50,239 INFO Crawled DoanhNghiepVN: https://doanhnghiepvn.vn/kinh-te/khach-nga-va-cis-den-da-nang-tang-gan-94/20260925035625761
+2026-09-28 11:59:11,268 INFO Crawled DoanhNghiepVN: https://doanhnghiepvn.vn/kinh-te/kinh-doanh/ceo-nguyen-van-thanh-aves-tim-cong-su-de-cung-tao-ra-nhung-chiec-xe-tuong-lai-cua-nguoi-viet/20260923112222064
+2026-09-28 11:59:13,255 WARNING Rejected https://soha.vn/kinh-doanh/bat-dong-san.htm (Soha): missing/unparseable publication date
+2026-09-28 11:59:13,677 WARNING Rejected https://soha.vn/kinh-doanh/tai-chinh-dau-tu.htm (Soha): missing/unparseable publication date
+2026-09-28 11:59:14,090 WARNING Rejected https://soha.vn/kinh-doanh/kinh-te-quoc-te.htm (Soha): missing/unparseable publication date
+2026-09-28 11:59:14,619 WARNING Rejected https://soha.vn/kinh-doanh/chung-khoan.htm (Soha): missing/unparseable publication date
+2026-09-28 11:59:15,010 WARNING Rejected https://soha.vn/kinh-doanh/thi-truong.htm (Soha): missing/unparseable publication date
+2026-09-28 11:59:15,431 WARNING Rejected https://soha.vn/kinh-doanh/doanh-nhan.htm (Soha): missing/unparseable publication date
+2026-09-28 11:59:15,871 INFO Crawled Soha: https://soha.vn/ong-pham-nhat-vuong-tiep-tuc-cho-xay-them-1-toa-thap-45-tang-giua-dao-giai-tri-thuong-mai-cua-mien-bac-duoc-vi-nhu-trai-tim-cua-sieu-du-an-456639-ty-dong-mo-hinh-tuong-tu-o-singapore-san-francisco-198260928062545383.htm
+2026-09-28 11:59:16,781 INFO Crawled Soha: https://soha.vn/cu-bat-tay-hon-3-ty-usd-tai-qatar-doanh-nghiep-viet-lap-ky-luc-lon-nhat-lich-su-198260927115125428.htm
+2026-09-28 11:59:59,210 INFO Crawled DauTuVN: https://dautuvietnam.com.vn/doanh-nhan/goc-nhin/bong-dang-con-trai-ty-phu-nguyen-thi-phuong-thao-trong-thuong-vu-voi-starlink-a26153.html
+2026-09-28 12:00:20,543 INFO Crawled DauTuVN: https://dautuvietnam.com.vn/dau-tu/tai-chinh-ngan-hang/pvcombank-dang-lam-an-ra-sao-a26155.html
+2026-09-28 12:00:22,911 INFO Crawled DoiSongVN: https://doisongvietnam.vn/gan-20-trieu-my-pham-gia-khoac-ao-hang-ngoai-chuan-bi-tuon-ban-ra-thi-truong-163542-3.html
+2026-09-28 12:00:23,801 INFO Crawled DoiSongVN: https://doisongvietnam.vn/nong-dan-gap-kho-dau-ra-lua-he-thu-163544-3.html
+2026-09-28 12:00:25,220 WARNING Rejected https://tuoitre.vn/chung-khoan/phan-tich-nhan-dinh.htm (TuoiTre): missing/unparseable publication date
+2026-09-28 12:00:25,688 WARNING Rejected https://tuoitre.vn/chung-khoan/doanh-nghiep-niem-yet.htm (TuoiTre): missing/unparseable publication date
+2026-09-28 12:00:26,199 INFO Crawled TuoiTre: https://tuoitre.vn/chung-khoan-24-9-ap-luc-ban-tro-lai-thi-truong-tim-gi-sau-cau-chuyen-nang-hang-100260923225013084.htm
+2026-09-28 12:00:27,229 INFO Crawled TuoiTre: https://tuoitre.vn/thi-truong-chung-khoan-e931.htm
+2026-09-28 12:00:28,693 INFO Crawled ThanhNien: https://thanhnien.vn/phia-sau-giac-mo-nghi-huu-tren-dinh-chung-khoan-185260922213441594.htm
+2026-09-28 12:00:29,627 INFO Crawled ThanhNien: https://thanhnien.vn/hon-21-ti-usd-von-ngoai-chuan-bi-do-bo-vao-co-phieu-18526091517340133.htm
+2026-09-28 12:00:30,136 INFO Saved 22 verified rows to C:\Users\DELL\Downloads\stock_news_anomaly_python_structure\stock_news_anomaly\data\raw\news_raw.csv

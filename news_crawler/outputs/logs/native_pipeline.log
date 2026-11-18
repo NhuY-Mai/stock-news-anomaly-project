@@ -1,0 +1,20 @@
+
+[2026-09-28T16:39:35.861251+07:00] START discover
+
+[2026-09-28T16:41:31.319206+07:00] START discover
+
+[2026-09-28T16:54:18.204145+07:00] START discover
+
+[2026-09-28T17:05:32.038080+07:00] START discover
+
+[2026-09-28T17:21:59.327258+07:00] START discover
+
+[2026-09-28T17:51:02.674380+07:00] START discover
+{"candidates": 7257, "urls": 7185, "sources": 32}
+
+[2026-09-28T18:01:18.199605+07:00] START scrape
+
+[2026-11-18T13:44:57.034406+07:00] START discover
+{"candidates": 7257, "urls": 7185, "sources": 32}
+
+[2026-11-18T13:44:58.053734+07:00] START scrape
